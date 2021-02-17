@@ -1,0 +1,543 @@
+$input-placeholder-color: red;
+@import './_variables';
+@import './_mixins';
+@import './_placeholder';
+@import './_utilities';
+@import './components/_navbar';
+
+@include simpleSpace();
+
+/* General */
+html {
+	font-size: 100%;
+	box-sizing: border-box;
+}
+
+*, *::before, *::after {margin: 0; padding: 0}
+
+#app {min-width: 320px;}
+
+button {cursor: pointer;}
+
+a:visited {color: #5F67B0!important;}
+
+body {
+	font-family: $secondaryFont;	
+    box-sizing: border-box;
+	// background-image: url("../img/banner-bk.png");
+	position: relative;
+	// &:after {
+	// 	content: "Réduction d'impôts";
+    //     position: fixed;
+    //     top: 0.5%;
+    //     left: -1%;
+    //     border-radius: 0 0 200px 0;
+    //     text-align: center;
+    //     background: #0092DA;
+    //     color: white;
+    //     width: 120px;
+    //     transform: rotate(15deg);
+    //     display: none;
+	// }
+}
+
+main {
+	min-height: calc(100vh - 5rem);	
+}
+
+.fixed-footer {
+	margin: 15px 0;
+	width: 100%;
+	min-height: 4rem;
+	position: absolute;
+	// bottom: 0;
+	// width: 100%;
+	// position: absolute;	
+	// bottom: 0;
+}
+
+.text-font-1 {
+	font-family: $primaryFont;
+}
+
+.text-font-2 {
+	font-family: $primaryFont;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $primaryFont;
+}
+
+
+
+/* Images */
+.bg-image {
+    background: linear-gradient(90deg, rgba(196,196,196,0.5) 18%, rgba(236,236,236,0.7) 78%),
+    url(../images/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+// Animations
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.card--1, .card--2, .card--3 {border-radius: 4px}
+
+/* Legal box modal */
+
+
+#animatedModal {
+	margin: auto;
+	padding: 15px;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999999;
+	box-shadow: 1px 1px 175px #000;
+	overflow: auto !important;
+	background: #FFFFFF !important;
+	.close-animated-modal {
+		border-radius: 50px;
+		margin-bottom: 50px;
+		outline: none !important;
+		border: none;
+		background: transparent;
+		i {
+			transition: all 0.2s;
+			cursor: pointer;
+			opacity: .9;
+			z-index: 9999;
+			&:hover {
+  				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+.legal__link {
+  color: $secondaryColor !important;
+  &:visited {
+  	color: $dangerColor;	
+  }
+}
+
+/* Messages boxes */
+.msg--thanks {
+  border: 8px solid white;
+  border-top: none;
+  border-bottom: none;
+  padding: 5%;
+}
+
+.error-msg {
+  background: rgba(239, 45, 86, 0.9);
+  z-index: 999999;
+  color: white;
+  width: 100%;
+  border-radius: 0 0 50px 50px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  height: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+  	overflow: initial;
+  	white-space: normal;
+  	overflow-y: auto;
+  }
+}
+
+.error-msg--reverse {
+  border-radius: 50px 50px 0px 0px;
+}
+
+// Form elements
+::placeholder {color: $lighterText!important;}
+
+.form-group {
+    margin: 0 15px;
+}
+.form-control {
+    background: white;
+    padding: 15px 10px;
+    display: block;
+    border-radius: 4px;    
+    height: 48px;    
+    font-size: 2rem;
+    border: 2px solid $jokerColor;
+    width: calc(100% - 20px); 
+}
+
+// Form container
+.lp-form {
+    border: 4px solid rgba($jokerColor, .3);
+    padding: 15px;
+    margin: auto;
+    border-radius: 0 0 8px 8px;
+    .heading {
+        background: $jokerColor;
+        color: white;
+        padding: 15px 0;        
+    }
+}
+
+// Progressbar indicator style
+.form__step-indicator {
+    padding: 5px 10px;
+    margin: 15px 0px;
+    border-radius: 8px;
+    background: white;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.form__step-glue {
+    background: white;
+    width: 40px;
+    min-width: 40px;
+    height: 15px;
+}
+
+
+// Validation widget style
+
+.is-valid {
+    position: relative;
+    align-items: center;
+    transition: all 0.4s;
+    box-sizing: border-box;
+    margin-bottom: 15px;    
+    input, select {
+        border-bottom: 3px solid #2FBF71;   
+    }
+}
+
+.is-not-valid {
+    @extend .is-valid;
+    &.--no-mb {
+        margin-bottom: 0px !important;
+    }    
+    input, select {
+        border-bottom: 3px solid #EF2D56;
+    }
+}
+
+.is-clean {
+    margin-bottom: 15px !important;
+    input, select {
+        border: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    &:before {
+        border: none !important;
+        content: "" !important;
+        display: none;
+    }
+}
+
+// Call to action and buttons
+.call-to-action {
+    padding: 1rem 1rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    height: 6rem;
+    line-height: 2rem;
+    color: #FFFFFF;
+    font-size: 2rem;
+    border: none;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-width: 260px;
+    width: 100% !important;
+    color: #333333;
+    a {
+    	text-decoration: none;
+    	color: #333333;
+    }
+    &:hover {
+    	cursor: pointer;
+    }
+}
+
+.cta--main, .cta--next {
+    background: #BEBEC0;
+    &:hover {
+        background: $secondaryColor;
+    }
+}
+
+.cta--next {
+    padding: 1rem 1rem;
+    border-radius: 4px;
+    font-weight: 700;            
+    margin-bottom: 1rem;
+    height: 4rem;
+    line-height: 1.5rem;            
+    font-size: 2rem;
+    border: none;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-width: 260px;
+    width: 100% !important;
+    color: #333333;
+}
+
+.btn--cta {
+    padding: 0.5rem 0.5rem;
+    min-height: 4rem;
+    font-size: 1rem;
+    line-height: 2.6rem;
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    border-radius: 4px;
+    font-weight: 700;
+    margin-bottom: 1rem;    
+    text-align: center;        
+    border: none;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;    
+    min-width: 260px;
+    width: 100% !important;            
+    background: #054A91;
+    display: block;
+}
+.cta--link {
+    text-decoration: none!important;            
+    color: white!important;
+    &:hover {
+    	background: #0670de;
+    	display: block;
+	}
+    i {
+    	display: none;
+    	&:hover {
+    		background: #0670de;
+    		display: block;
+		}
+    }
+    &:visited {
+    	color: $secondaryColor!important;
+	}
+}
+
+// Checkbox
+
+input[type=checkbox] + label {
+    display: block;
+    margin: 0;
+}
+
+input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+input[type=checkbox] + label:before {
+    content: "✓";
+    font-size: $chkSquareDim - ($chkSquareDim * 0.2);
+    font-weight: bold;
+    border: 3px solid #aaa;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    width: $chkSquareDim;
+    height: $chkSquareDim;
+    vertical-align: middle;
+    color: transparent;
+    margin-right: 15px;
+    transition: border-color 0.3s ease;
+}
+
+input[type=checkbox]:checked + label:before {
+    border-color: $jokerColor;
+    color: $jokerColor;
+}
+
+.chk-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s;    
+    background: white;
+    border-radius: 4px;
+    margin: 15px;    
+    cursor: pointer;
+    position: relative;
+    height: 240px;
+    width: 20%;
+    min-width: 240px;
+    // min-width: 240px;
+    &:hover {
+        transform: scale(1.1);
+        background: $secondaryColor;
+    }
+    img {
+        width: 128px; height: 128px; position: absolute;
+        top: 60%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    input {
+		display: none;
+	}
+    label {
+    	width: 100%;    	
+	    font-size: 1.2rem;	       
+	    cursor: pointer;
+	    color: black!important;
+	    border-radius: 4px;
+	    font-weight: bold;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        text-align: center;
+    }
+}
+
+// Big radio button
+/* 1. Display label */
+.big-radio + label {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 15px 40px;
+    background: $neutralColor;
+    font-size: 2rem;
+    border-radius: 4px;
+    &:hover {
+    	background: lighten($neutralColor, 15%);
+    }
+}
+/* 2. Hide input */
+.big-radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    transition: all 0.4s;
+}
+
+/* 3. Style label before */
+.big-radio + label:before {
+    content: '';
+    font-size: 3rem;
+    // border: 0.2rem solid #6B7280;
+    // border-radius: 0.4rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    color: transparent;
+    margin-right: 5px;
+    transition: all 0.4s;
+}
+
+/* 4. Style applied only when radio/checkbox is being checked */
+.big-radio:checked + label:before, 
+.big-radio:checked + label {
+//    background: $secondaryColor;
+    // border-color: $jokerColor;
+    content: '✓';
+    font-weight: bold;
+    color: white;
+    background: $checkedColor; 
+}
+
+/* Media queries */
+// Sass
+.lg-only {
+    display: none;
+    @media (map-get($breakpointsMin, 'lg')) {
+        display: block;
+    }        
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) {
+    .form__step-indicator {
+        font-size: 1.5rem;                
+    }
+    .btn--cta {
+    	padding: 0.5rem 0.5rem;	    
+	    font-size: 1.5rem;
+	    line-height: 2.6rem;
+    }         
+}
+
+@media only screen and (min-device-width : 992px) {
+    body:after {
+        display: block;
+    }
+    .card--1 {border-radius: 20px 0 0 0}
+    .card--2 {border-radius: 0}
+    .card--3 {border-radius: 0 20px 0 0}
+} 
+
+/* Debug */
+.debug-bd-r {
+    border: 2px solid red !important;
+}
+
+.debug-bd-b {
+    border: 2px solid blue !important;
+}
+
+.debug-bd-g {
+    border: 2px solid green !important;
+}
+
+// Custom
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) {
+    .form__step-indicator {
+        font-size: 1.5rem;
+    }
+    .chk-btn {
+	    label {	    	
+		    font-size: 2rem;
+		    margin-top: 7px;
+		    margin-bottom: 7px;		    
+		    padding: 25px;		    
+	    }
+	}
+	.main-h1 {font-size: 2.5rem;}
+}
+
+@media only screen and (min-device-width : 992px) {
+    body:after {
+        display: block;
+    }
+    .card--1 {border-radius: 20px 0 0 0}
+    .card--2 {border-radius: 0}
+    .card--3 {border-radius: 0 20px 0 0}
+} 
+#banner {padding-top: 5px; height: 100vh;}
+
+// DEBUG:
+.debug-bd-r {border: 2px solid red!important;}
+.debug-bd-b {border: 2px solid blue!important;}
+.debug-bd-g {border: 2px solid green!important;}

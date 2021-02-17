@@ -1,0 +1,16 @@
+.btn {  
+	font-size: 1rem;  
+	padding: 0.5rem 1rem;
+	margin: 1rem 1rem;
+    font-weight: 600;    
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+	&--enabled {
+		opacity: 1;
+	}
+	&--disabled {
+		opacity: .8;
+	}
+}
