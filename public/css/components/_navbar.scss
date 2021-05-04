@@ -1,0 +1,36 @@
+.navbar {
+	font-size: 1.2rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;	
+	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);		
+	}
+	.logo {
+		font-size: 2rem;
+		margin: 0.5rem 1rem;
+	}
+	.nav {
+		justify-self: flex-end;
+		display: flex;
+		align-items: center;
+		justify-content: center;		
+		a {
+			padding: 0 1rem;
+			&:hover {
+				color: #333;
+			}
+		}
+	}
+	&-dark {
+		color: white;
+		.nav {
+			a {
+				color: white;
+				&:hover {
+					color: #eee;
+				}
+			}
+		}		
+	}
+}

@@ -1,0 +1,45 @@
+// Need variables: $breakpointsMin and $breakpointsMax to work
+
+@mixin mq($breakpoint, $mobileFirst: true) {
+	$breakpoints: null;
+	@if $mobileFirst {
+		$breakpoints: $breakpointsMin;
+	} @else {
+		$breakpoints: $breakpointsMax;
+	}	
+	// If the key exists in the map
+	@if map-has-key($breakpoints, $breakpoint) {
+		// Prints a media query based on the value
+		@media (map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+
+	// If the key doesn't exist in the map
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+			+ "Available breakpoints are: #{map-keys($breakpoints)}.";
+	}
+}
+
+@mixin propBuild($propName, $propValues, $label: null) {	
+    @each $prop in $propValues {
+    	@if $label {
+	        .#{$label}-#{$prop} {
+	            #{$propName}: $prop;
+	        } 
+	    } @else {
+        	.#{$propName}-#{$prop} {
+        		#{$propName}: $prop;
+    		}
+	    }
+    }   
+}
+
+// @mixin propBuildFromMap($propName, $propValues) {
+//     @each $propLabel,$propValue in $propValues {
+//         .#{$propLabel}-#{$propValue} {
+//             justify-content: $propValue;
+//         }
+//     }   
+// }

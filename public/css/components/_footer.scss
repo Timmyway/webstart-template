@@ -1,0 +1,15 @@
+.footer {	
+	color: $themeColor;
+	padding: 2rem 1.5rem;
+	.wrapper {		
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		flex-wrap: wrap;		
+	}
+	@include mq('sm') {
+		.wrapper {
+			justify-content: space-between;
+		}
+	}
+}
