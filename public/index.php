@@ -3,4 +3,4 @@
 const BASEPATH = __DIR__ . '/../';
 require "../function.php";
 
-require view('home.php', ['name' => 'Timmy Way 2024']);
+require view('pages/home.php', ['name' => 'Timmy Way 2024']);
