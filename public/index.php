@@ -1,5 +1,5 @@
 <?php
-
+require "../vendor/autoload.php";
 const BASEPATH = __DIR__ . '/../';
 require "../function.php";
 

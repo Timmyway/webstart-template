@@ -1,0 +1,17 @@
+{
+    "name": "timmy/webstart-template",
+    "description": "Le template \"PHP-Tailwind-Vue-Vite Starter\" est une ressource clé en main qui vise à simplifier le processus de démarrage de projets web modernes. Il combine plusieurs technologies populaires pour offrir une base solide pour le développement web.",
+    "autoload": {
+        "psr-4": {
+            "Timmy\\WebstartTemplate\\": "src/",
+            "Core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tim",
+            "email": "timmyway1990@gmail.com"
+        }
+    ],
+    "require": {}
+}
