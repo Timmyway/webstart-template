@@ -1,5 +1,5 @@
 <?php include 'views/header.php'; ?>
 	<div id="app">
-		{{ msg }}		
+		{{ say }}		
 	</div>
 <?php include 'views/footer.php'; ?>
