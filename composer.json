@@ -4,7 +4,7 @@
     "autoload": {
         "psr-4": {
             "Timmy\\WebstartTemplate\\": "src/",
-            "Core\\": "core/"
+            "Core\\": "Core/"
         }
     },
     "authors": [
