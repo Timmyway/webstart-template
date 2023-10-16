@@ -9,12 +9,13 @@ require "../function.php";
 // Request setting
 $request = Request::init();
 
-dd($request);
-
 $router = new Router();
 $routes = require base_path('routes.php');
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+// Equivalent to parse_url($_SERVER['REQUEST_URI'])['path']
+$uri = $request->getPathInfo();
 
-$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+// Equivalent to $_POST['_method'] ?? $_SERVER['REQUEST_METHOD']
+$method = $request->getMethod();
+
 $router->route($uri, $method);
 // require view('pages/home.php', ['name' => 'Timmy Way 2024']);
