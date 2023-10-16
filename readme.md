@@ -1,6 +1,16 @@
-#### Description
+### Description
 
-This is a starting code for basic PHP project. 
+This is a base template code for a basic PHP project.
 
-Bootstrap is used for CSS and Vue Js for javascript. Header, footer are available inside the views folder. The assets are placed in the public folder.
+Tailwind is used for CSS. Vue Js for javascript. It follows MVC design pattern.
+
+### Installation
+- Install PHP dependencies with composer install
+- Install frontend dependencies with npm install
+
+### Roadmap
+#### Features
+- Integration of Illuminate database package.
+- Integration of Symfony routing package.
+- Integration of BladeOne as template engine.
 
