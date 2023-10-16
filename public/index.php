@@ -1,5 +1,6 @@
 <?php
 use Lite\Http\Request;
+use Lite\Lite;
 use Lite\Routing\Router;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -10,9 +11,8 @@ require base_path('routes.php');
 
 // Request setting
 $request = Request::init();
-
-
-$router = new Router($request, $routes->getRouteCollections());
+$lite = new Lite();
+$lite->run($request, $routes);
 
 // $router = new Router();
 // $routes = require base_path('routes.php');

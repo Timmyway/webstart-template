@@ -9,6 +9,6 @@ class Request extends SymfonyRequest
 {        
     public static function init()
     {
-        return SymfonyRequest::createFromGlobals();
+        return self::createFromGlobals();
     }    
 }

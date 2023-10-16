@@ -4,6 +4,8 @@ namespace Lite\Routing;
 use Exception;
 use Lite\Http\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
@@ -29,40 +31,28 @@ class Router
             $context->fromRequest($this->request);
 
             // Setting of URL matcher
-            $pathInfo = $this->request->getPathInfo();             
-            
+            $pathInfo = $this->request->getPathInfo();                         
             $urlMather = new UrlMatcher($this->routes, $context);            
-            $result = $urlMather->match($pathInfo); 
-            $this->request->attributes->add($result);
-
-            $controller = $this->extractController($result['_controller']);
-            $this->callController($controller);
-            // dd($controller);            
+            $this->request->attributes->add($urlMather->match($pathInfo));
+            
+            $this->callController();
+                        
         } catch(ResourceNotFoundException $e) {            
             $response = new Response("La page demandée n'existe pas", 404);
         } catch(Exception $e) {
             $response = new Response("Une erreur est survenu sur le serveur", 500);            
         }
         $response->send();
-    }  
-    
-    private function extractController(string $controllerName, $sep = '@'): array
-    {
-        $controller = substr(
-            $controllerName,
-            0,
-            strpos($controllerName, $sep)
-        );
-        $method = substr(
-            $controllerName,
-            strpos($controllerName, $sep) + 1
-        );
-        return ['class' => $controller, 'method' => $method];
-    }
+    }    
 
-    private function callController(array $controller)
+    private function callController()
     {
-        $controllerToCall = [new $controller['class'], $controller['method']];
-        return call_user_func($controllerToCall, $this->request);
+        // Use resolver to find the appropriate controller, methods and attributes
+        $controllerResolver = new ControllerResolver();
+        $argumentResolver = new ArgumentResolver();        
+        $controller = $controllerResolver->getController($this->request);
+        $arguments = $argumentResolver->getArguments($this->request, $controller);         
+        // dd($arguments);
+        return call_user_func_array($controller, $arguments);
     }
 }
