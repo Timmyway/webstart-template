@@ -1,8 +1,15 @@
 <?php
 use Core\Router;
+use Lite\Http\Request;
+
 require "../vendor/autoload.php";
 const BASEPATH = __DIR__ . '/../';
 require "../function.php";
+
+// Request setting
+$request = Request::init();
+
+dd($request);
 
 $router = new Router();
 $routes = require base_path('routes.php');

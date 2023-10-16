@@ -4,7 +4,8 @@
     "autoload": {
         "psr-4": {
             "Timmy\\WebstartTemplate\\": "src/",
-            "Core\\": "Core/"
+            "Core\\": "Core/",
+            "Lite\\": "Lite/"
         }
     },
     "authors": [
@@ -13,5 +14,8 @@
             "email": "timmyway1990@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/http-foundation": "^6.3",
+        "symfony/routing": "^6.3"
+    }
 }
