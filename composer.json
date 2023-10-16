@@ -4,7 +4,7 @@
     "autoload": {
         "psr-4": {
             "Timmy\\WebstartTemplate\\": "src/",
-            "Core\\": "Core/",
+            "App\\": "App/",
             "Lite\\": "Lite/"
         }
     },
