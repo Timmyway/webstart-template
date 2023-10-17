@@ -22,7 +22,7 @@ class Lite
 
         // Setup environment variable
         $dotenv = \Dotenv\Dotenv::createImmutable(basePath());
-        $dotenv->load();        
+        $dotenv->load();
 
         // Register the Template Engine Service Provider.
         $container = new Container;

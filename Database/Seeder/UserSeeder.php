@@ -1,19 +1,45 @@
 <?php
 namespace Database\Seeder;
-require 'DatabaseSeeder.php';
 
-class UserSeeder extends DatabaseSeeder
+use Database\DatabaseBuilder;
+use Throwable;
+
+class UserSeeder extends DatabaseBuilder
 {    
     public function run()
-    {
+    {        
         $users = [
-            ['name' => 'John Doe', 'email' => 'john@example.com', 'password' => $this->encrypt('secret')],
-            ['name' => 'Jane Doe', 'email' => 'jane@example.com', 'password' => $this->encrypt('secret')],
-            // Add more user data as needed
+            [
+                'name' => 'Tim',
+                'email' => 'tim@example.com',
+                'password' => liteHash('1234'),
+                'is_admin' => true,
+                'created_at' => now()->getTimestamp()
+            ],
+            [
+                'name' => 'Pierre',
+                'email' => 'pierre@example.com',
+                'password' => liteHash('1234'),
+                'is_admin' => true,
+                'created_at' => now()->getTimestamp()
+            ],
+            [
+                'name' => 'Nina',
+                'email' => 'nina@example.com',
+                'password' => liteHash('1234'),
+                'is_admin' => true,
+                'created_at' => now()->getTimestamp()
+            ]
+            // ...
         ];
 
         foreach ($users as $user) {
-            $this->db->table('users')->insert($user);
+            echo "---- Creating user {$user['name']} with email {$user['email']} ----" . PHP_EOL;
+            try {
+                $this->db->table('users')->insert($user);
+            } catch(Throwable $e) {
+                echo $e->getMessage() . PHP_EOL;
+            }
         }
     }
 }

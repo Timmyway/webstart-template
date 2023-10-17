@@ -6,19 +6,19 @@ class ConfigLoader
     protected $config;
     private $configPath;
 
-    public function __construct($configPath = 'config')
+    public function __construct($configPath = 'Lite/config')
     {
         $this->config = [];
+        $this->configPath = basePath($configPath);
         $this->loadConfigurationFiles();
     }
 
     protected function loadConfigurationFiles()
-    {
-        $configPath = basePath('Lite/config'); // Define the path to your config files
-        $configFiles = scandir($configPath);
+    {        
+        $configFiles = scandir($this->configPath);        
         
         foreach ($configFiles as $file) {
-            $filePath = $configPath . '/' . $file;
+            $filePath = $this->configPath . '/' . $file;
             if (is_file($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'php') {
                 $this->config[pathinfo($file, PATHINFO_FILENAME)] = require $filePath;
             }

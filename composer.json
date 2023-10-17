@@ -6,7 +6,7 @@
             "Timmy\\WebstartTemplate\\": "src/",
             "App\\": "App/",
             "Lite\\": "Lite/",
-            "Database\\": "Database/"
+            "Database\\": "database/"            
         },
         "files": ["Lite/helpers.php"]
     },

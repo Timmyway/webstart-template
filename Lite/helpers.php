@@ -55,3 +55,16 @@ if (!function_exists('config')) {
         }
     }
 }
+
+if (!function_exists('liteHash')) {
+    function liteHash(string $passwordString): string {
+        return password_hash($passwordString, PASSWORD_DEFAULT);
+    }
+}
+
+if (!function_exists('now')) {
+    function now(): \DateTimeImmutable
+    {
+        return new \DateTimeImmutable();
+    }
+}

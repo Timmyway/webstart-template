@@ -1,15 +1,19 @@
 <?php
 namespace Database\Seeder;
-require 'UserSeeder.php';
 
 class Seeder
 {
     public static function run()
     {
-        echo 'test';
-        $user_seed = new UserSeeder();
-        $user_seed->run();
+        $seeds = [
+            'users' => UserSeeder::class
+        ];
+        echo 'Running seeders...' . PHP_EOL;
+        foreach ($seeds as $name => $seedClass) {
+            $seed = new $seedClass();
+            $seed->run();
+            echo "Finished seeding {$name}." . PHP_EOL;
+        }        
+        echo 'Complete all seeding operations.' . PHP_EOL;
     }
 }
-
-Seeder::run();

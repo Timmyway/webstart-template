@@ -9,7 +9,7 @@ class DatabaseManager
     private $config;
 
     public function __construct(array $config) {
-        $this->config = $config;
+        $this->config = $config;        
         $this->init();        
         // $this->createDatabase($config['database']);
     }
@@ -17,10 +17,12 @@ class DatabaseManager
     protected function init()
     {
         $this->capsule = new Capsule();
+        // dd($this->config);
+        $this->config['model_locations'] = basePath('/App/Models');
         $this->capsule->addConnection($this->config);
         $this->capsule->setAsGlobal();        
         // Add your model directories
-        $this->capsule->addConnection(['model_locations' => [basePath('/App/Models')]]);
+        // $this->capsule->addConnection(['model_locations' => [basePath('/App/Models')]]);
 
         $this->capsule->bootEloquent();
     }    
