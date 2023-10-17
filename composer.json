@@ -5,7 +5,8 @@
         "psr-4": {
             "Timmy\\WebstartTemplate\\": "src/",
             "App\\": "App/",
-            "Lite\\": "Lite/"            
+            "Lite\\": "Lite/",
+            "Database\\": "Database/"
         },
         "files": ["Lite/helpers.php"]
     },

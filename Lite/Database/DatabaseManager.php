@@ -23,35 +23,10 @@ class DatabaseManager
         $this->capsule->addConnection(['model_locations' => [basePath('/App/Models')]]);
 
         $this->capsule->bootEloquent();
-    }
-
-    private function createSqliteDatabase()
-    {
-        // Make sure the database file directory exists
-        $directory = basePath($this->config['database']);
-        if (!is_dir($directory)) {
-            mkdir($directory, 0777, true);
-        }
-
-        // Check if the database file exists
-        if (!file_exists($this->config['database'])) {
-            $this->capsule->getConnection()->statement('CREATE DATABASE IF NOT EXISTS ' . $this->config['database']);
-        }
-    }
+    }    
 
     public function capsule()
     {
         return $this->capsule;
-    }
-
-    public function createDatabase(string $databaseName): void
-    {
-        // Make sure the database file directory exists
-        $directory = dirname($databasePath);
-        if (!is_dir($directory)) {
-            mkdir($directory, 0777, true);
-        }
-        $connection = $this->capsule->getConnection();
-        $connection->statement('CREATE DATABASE IF NOT EXISTS ' . $databaseName);
-    }
+    }    
 }
