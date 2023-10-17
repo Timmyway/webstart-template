@@ -20,6 +20,11 @@ class Lite
         $dotenv = \Dotenv\Dotenv::createImmutable(basePath());
         $dotenv->load();
 
+        // Load config file
+        $config = new ConfigLoader();
+        $databaseConfig = $config->get('database');
+        dd($databaseConfig);
+
         // Register the Template Engine Service Provider.
         $templateEngineServiceProvider = new TemplateEngineServiceProvider();
         $container = $templateEngineServiceProvider->register(new Container);        

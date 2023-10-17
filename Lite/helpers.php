@@ -37,7 +37,7 @@ function asset($path, $publicFolder = '') {
 }
 
 if (!function_exists('env')) {
-    function env(string $key, $default = ''): string {
+    function env(string $key, $default = ''): string|null {
         try {
             return $_ENV[$key];
         } catch(Throwable $e) {            

@@ -3,19 +3,17 @@ return [
     'connections' => [
 
         'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => getenv('DATABASE_URL'),
-            'database' => getenv('DB_DATABASE', '')
+            'driver' => 'sqlite',            
+            'database' => env('DB_DATABASE', '')
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
-            'url' => getenv('DATABASE_URL'),
-            'host' => getenv('DB_HOST', '127.0.0.1'),
-            'port' => getenv('DB_PORT', '3306'),
-            'database' => getenv('DB_DATABASE', ''),
-            'username' => getenv('DB_USERNAME', 'root'),
-            'password' => getenv('DB_PASSWORD', ''),            
+            'driver' => 'mysql',            
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', ''),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),            
             'charset' => 'utf8mb4'
         ]
     ]

@@ -26,7 +26,7 @@ class ConfigLoader
     }
 
     public function get($key, $default = null)
-    {
+    {        
         $keys = explode('.', $key);
         $value = $this->config;
         foreach ($keys as $k) {
