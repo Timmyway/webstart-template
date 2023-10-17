@@ -4,20 +4,25 @@ namespace Lite\View;
 class TemplateEngineFactory {
     private $viewsPath;
     private $cachePath;
+    private $engineName;
     private $_engine;
 
-    public function __construct(string $viewsPath, string $cachePath, string $engine = 'bladeone')
+    public function __construct(string $viewsPath, string $cachePath, string $engineName = 'bladeone')
     {
         $this->viewsPath = $viewsPath;
         $this->cachePath = $cachePath;
-        $this->create($engine, $viewsPath, $cachePath);
+        $this->engineName = $engineName;        
+        $this->create();
     }
 
 
-    public function create(string $engine, string $viewsPath, string $cachePath): TemplateEngineInterface {
-        switch ($engine) {
-            case 'bladeone':
-                $this->setEngine(BladeOneTemplateEngine::getInstance($viewsPath, $cachePath));
+    public function create() {        
+        switch ($this->engineName) {            
+            case 'bladeone':                
+                $this->setEngine(
+                    BladeOneTemplateEngine::getInstance($this->viewsPath, $this->cachePath)
+                );
+                break;
             // Add more cases for other engines
             default:
                 throw new \InvalidArgumentException('Invalid template engine.');
@@ -26,7 +31,7 @@ class TemplateEngineFactory {
 
     public function setEngine(TemplateEngineInterface $engine)
     {
-        return $engine;
+        $this->_engine = $engine;
     }
 
     public function getEngine(): TemplateEngineInterface

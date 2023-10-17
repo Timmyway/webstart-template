@@ -13,15 +13,7 @@ class BaseController implements ContainerAwareInterface
 
     protected function render(Request $request, string $view, $datas = [])
     {
-        $engine = $request->getService('templateEngine')->getEngine();
-
-        dd($engine);
-        $templateEngine = $this->getContainer()->get('templateEngine');
-        $templateEngine->render($view, $datas);
-    }
-
-    public function getContainer()
-    {
-        return $this->container;
+        $templateEngine = $request->getService('templateEngine');        
+        echo $templateEngine->render($view, $datas);
     }
 }

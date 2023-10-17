@@ -24,34 +24,34 @@ class Router
     }
 
     public function setup()
-    {
+    {        
         $response = new Response;
         try {
             $context = new RequestContext();
             $context->fromRequest($this->request);
-
+            
             // Setting of URL matcher
-            $pathInfo = $this->request->getPathInfo();                         
-            $urlMather = new UrlMatcher($this->routes, $context);            
+            $pathInfo = $this->request->getPathInfo();
+            $urlMather = new UrlMatcher($this->routes, $context);
             $this->request->attributes->add($urlMather->match($pathInfo));
             
             $this->callController();
                         
         } catch(ResourceNotFoundException $e) {            
             $response = new Response("La page demandée n'existe pas", 404);
-        } catch(Exception $e) {
+        } catch(Exception $e) {            
             $response = new Response("Une erreur est survenu sur le serveur", 500);            
         }
         $response->send();
     }    
 
     private function callController()
-    {
+    {        
         // Use resolver to find the appropriate controller, methods and attributes
         $controllerResolver = new ControllerResolver();
         $argumentResolver = new ArgumentResolver();        
         $controller = $controllerResolver->getController($this->request);
-        $arguments = $argumentResolver->getArguments($this->request, $controller);         
+        $arguments = $argumentResolver->getArguments($this->request, $controller);                 
         // dd($arguments);
         return call_user_func_array($controller, $arguments);
     }

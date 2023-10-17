@@ -17,7 +17,7 @@ class Lite
         // Register the Template Engine Service Provider.
         $templateEngineServiceProvider = new TemplateEngineServiceProvider();
         $container = $templateEngineServiceProvider->register(new Container);        
-        $request->addService('templateEngine', $container->get('templateEngine'));
+        $request->addService('templateEngine', $container->get('templateEngine')->getEngine());
         $this->router = new Router($request, $routes->getRouteCollections());
     }
 }

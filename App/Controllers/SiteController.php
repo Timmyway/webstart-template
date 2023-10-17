@@ -8,12 +8,12 @@ class SiteController extends BaseController
 {
     public function home(Request $request)
     {        
-        return $this->render($request, 'pages/home.php');
+        return $this->render($request, 'pages.home');
     }
 
     public function about(Request $request)
     {
-        require $this->render($request, 'pages/about.php');
+        return $this->render($request, 'pages.about');
     }
 
     public function hello($name, Request $request)
