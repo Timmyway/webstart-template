@@ -16,6 +16,10 @@ class Lite
     public function run(Request $request, Routes $routes)
     {        
 
+        // Setup environment variable
+        $dotenv = \Dotenv\Dotenv::createImmutable(basePath());
+        $dotenv->load();
+
         // Register the Template Engine Service Provider.
         $templateEngineServiceProvider = new TemplateEngineServiceProvider();
         $container = $templateEngineServiceProvider->register(new Container);        
@@ -23,7 +27,8 @@ class Lite
 
         // Add middlewares
         $middlewareStack = new MiddlewareStack();
-        $middlewareStack->addMiddleware(new ContainerInjectionMiddleware($container));        
+        $middlewareStack->addMiddleware(new ContainerInjectionMiddleware($container));
+
         $this->router = new Router($request, $routes->getRouteCollections(), $middlewareStack);
     }
 }

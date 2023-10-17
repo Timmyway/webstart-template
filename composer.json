@@ -20,6 +20,7 @@
         "symfony/routing": "^6.3",
         "symfony/http-kernel": "^6.3",
         "eftec/bladeone": "^4.9",
-        "symfony/dependency-injection": "^6.3"
+        "symfony/dependency-injection": "^6.3",
+        "vlucas/phpdotenv": "^5.5"
     }
 }

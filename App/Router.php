@@ -43,7 +43,7 @@ class Router
     {        
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                return require base_path($route['controller']);
+                return require basePath($route['controller']);
             }
         }
 
@@ -54,7 +54,7 @@ class Router
     {
         http_response_code(404);
 
-        require base_path("views/{$code}.php");
+        require basePath("views/{$code}.php");
 
         die();
     }

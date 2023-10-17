@@ -1,6 +1,4 @@
 <?php
 
-require "../function.php";
-require base_path("Lite/helpers.php");
-require base_path("vendor/autoload.php");
-require base_path('routes.php');
+require "../vendor/autoload.php";
+require basePath('routes.php');

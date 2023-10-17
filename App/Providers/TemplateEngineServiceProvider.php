@@ -7,8 +7,8 @@ use Lite\View\TemplateEngineFactory;
 
 class TemplateEngineServiceProvider {
     public function register(Container $containerBuilder) {
-        $viewsPath = base_path('views'); // Replace with the actual path
-        $cachePath = base_path('storage/cache'); // Replace with the actual path
+        $viewsPath = basePath('views'); // Replace with the actual path
+        $cachePath = basePath('storage/cache'); // Replace with the actual path
 
         // $templateEngine = TemplateEngineFactory::create('bladeone', $viewsPath, $cachePath);
         $containerBuilder->register('templateEngine', TemplateEngineFactory::class)

@@ -13,7 +13,7 @@ $lite = new Lite();
 $lite->run($request, $routes);
 
 // $router = new Router();
-// $routes = require base_path('routes.php');
+// $routes = require basePath('routes.php');
 // // Equivalent to parse_url($_SERVER['REQUEST_URI'])['path']
 // $uri = $request->getPathInfo();
 
