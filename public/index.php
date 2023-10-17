@@ -4,10 +4,8 @@ use Lite\Lite;
 use Lite\Routing\Router;
 use Symfony\Component\Routing\RouteCollection;
 
-require "../vendor/autoload.php";
 const BASEPATH = __DIR__ . '/../';
-require "../function.php";
-require base_path('routes.php');
+require '../App/bootstrap.php';
 
 // Request setting
 $request = Request::init();

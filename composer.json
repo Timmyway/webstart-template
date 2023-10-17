@@ -6,7 +6,8 @@
             "Timmy\\WebstartTemplate\\": "src/",
             "App\\": "App/",
             "Lite\\": "Lite/"
-        }
+        },
+        "files": ["Lite/helpers.php"]
     },
     "authors": [
         {
@@ -17,6 +18,8 @@
     "require": {
         "symfony/http-foundation": "^6.3",
         "symfony/routing": "^6.3",
-        "symfony/http-kernel": "^6.3"
+        "symfony/http-kernel": "^6.3",
+        "eftec/bladeone": "^4.9",
+        "symfony/dependency-injection": "^6.3"
     }
 }

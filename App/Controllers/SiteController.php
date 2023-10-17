@@ -6,14 +6,14 @@ use Lite\Http\Response;
 
 class SiteController extends BaseController
 {
-    public function home()
+    public function home(Request $request)
     {        
-        return $this->render('pages/home.php');
+        return $this->render($request, 'pages/home.php');
     }
 
-    public function about()
+    public function about(Request $request)
     {
-        require $this->render('pages/about.php');
+        require $this->render($request, 'pages/about.php');
     }
 
     public function hello($name, Request $request)
