@@ -2,7 +2,10 @@
 namespace Lite\Routing;
 
 use Exception;
+use Lite\Http\Middleware\ContainerInjectionMiddleware;
+use Lite\Http\Middleware\MiddlewareStack;
 use Lite\Http\Response;
+use Lite\Service\Container;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
@@ -16,10 +19,12 @@ class Router
 {
     protected $routes;
     private $request;
+    private $middlewareStack;
     
-    public function __construct(Request $request, RouteCollection $routes) {
+    public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack) {
         $this->request = $request;
-        $this->routes = $routes;
+        $this->routes = $routes;        
+        $this->middlewareStack = $middlewareStack;        
         $this->setup();
     }
 
@@ -51,8 +56,14 @@ class Router
         $controllerResolver = new ControllerResolver();
         $argumentResolver = new ArgumentResolver();        
         $controller = $controllerResolver->getController($this->request);
-        $arguments = $argumentResolver->getArguments($this->request, $controller);                 
-        // dd($arguments);
+        // Run middlewares
+        $controller = $this->runMiddlewares($controller);        
+        $arguments = $argumentResolver->getArguments($this->request, $controller);        
         return call_user_func_array($controller, $arguments);
+    }
+
+    private function runMiddlewares($controller)
+    {        
+        return $this->middlewareStack->execute($this->request, $controller);
     }
 }

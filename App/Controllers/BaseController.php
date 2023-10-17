@@ -11,9 +11,11 @@ class BaseController implements ContainerAwareInterface
     use ContainerAwareTrait;
     protected $container;    
 
-    protected function render(Request $request, string $view, $datas = [])
+    protected function render(string $view, $datas = [])
     {
-        $templateEngine = $request->getService('templateEngine');        
+        // $templateEngine = $request->getService('templateEngine');        
+        $templateEngine = $this->container->get('templateEngine')->getEngine();
+        
         echo $templateEngine->render($view, $datas);
     }
 }
