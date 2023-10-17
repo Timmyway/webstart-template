@@ -4,7 +4,12 @@ export default {
       "./views/**/*.{php,js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#facc15', // Define a primary color
+        secondary: '#3490dc', // Define a secondary color
+      }
+    },
   },
   plugins: [],
 }

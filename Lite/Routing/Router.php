@@ -24,7 +24,7 @@ class Router
     public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack) {
         $this->request = $request;
         $this->routes = $routes;        
-        $this->middlewareStack = $middlewareStack;        
+        $this->middlewareStack = $middlewareStack;
         $this->setup();
     }
 
@@ -43,7 +43,7 @@ class Router
             $this->callController();
                         
         } catch(ResourceNotFoundException $e) {            
-            $response = new Response("La page demandée n'existe pas", 404);
+            return redirect('lost');
         } catch(Exception $e) {            
             $response = new Response("Une erreur est survenu sur le serveur: {$e->getMessage()}", 500);            
         }

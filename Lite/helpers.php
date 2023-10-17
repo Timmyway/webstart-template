@@ -1,5 +1,7 @@
 <?php
 
+use Lite\Http\RedirectResponse;
+
 function urlIs($value) {
     return $_SERVER['REQUEST_URI'] === $value;
 }
@@ -47,7 +49,7 @@ if (!function_exists('env')) {
 }
 
 if (!function_exists('config')) {
-    function config(string $key): string|null {
+    function config(string $key, $default = ''): string|null {
         try {
             return $_ENV[$key];
         } catch(Throwable $e) {            
@@ -66,5 +68,13 @@ if (!function_exists('now')) {
     function now(): \DateTimeImmutable
     {
         return new \DateTimeImmutable();
+    }
+}
+
+if (!function_exists('redirect')) {
+    function redirect(string $url, int $status = 302, array $headers = [])
+    {
+        $resp = new RedirectResponse($url, $status, $headers);
+        $resp->send();
     }
 }

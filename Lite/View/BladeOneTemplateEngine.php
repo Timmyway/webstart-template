@@ -25,7 +25,8 @@ class BladeOneTemplateEngine implements TemplateEngineInterface {
     public function render(string $template, array $data = []): string|null {
         try {
             return $this->_engine->run($template, $data);
-        } catch (Throwable $e) {            
+        } catch (Throwable $e) {
+            echo $e->getMessage();
             $this->renderNotFoundPage();
             return null;
         }

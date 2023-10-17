@@ -7,22 +7,29 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class SiteController extends BaseController
 {
-    public function home(Request $request)
+    public function home()
     {        
         return $this->render('pages.home');
     }
 
-    public function about(Request $request)
+    public function about()
     {
-        $db = $this->container->get('database')->capsule();                
-        return $this->render('pages.about');
+        $db = $this->container->get('database')->capsule();
+        $users = $db->table('users')->select('id', 'name', 'email')->get();
+        // dd($users);
+        return $this->render('pages.about', ['users' => $users]);
     }
 
-    public function hello($name, Request $request)
+    public function users()
     {
-        $response = new Response();
-        $response->setContent('Hi my friend...'.$request->get('name'));
-        $response->headers->set('Content-Type', 'text/html');
-        $response->send();
+        $db = $this->container->get('database')->capsule();
+        $users = $db->table('users')->select('id', 'name', 'email')->get();
+        // dd($users);
+        return $this->render('pages.about', ['users' => $users]);
+    }
+
+    public function lost()
+    {        
+        return $this->render('pages.404');
     }
 }
