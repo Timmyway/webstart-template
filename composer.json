@@ -5,7 +5,7 @@
         "psr-4": {
             "Timmy\\WebstartTemplate\\": "src/",
             "App\\": "App/",
-            "Lite\\": "Lite/"
+            "Lite\\": "Lite/"            
         },
         "files": ["Lite/helpers.php"]
     },
@@ -21,6 +21,7 @@
         "symfony/http-kernel": "^6.3",
         "eftec/bladeone": "^4.9",
         "symfony/dependency-injection": "^6.3",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "illuminate/database": "^10.28"
     }
 }

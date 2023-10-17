@@ -45,3 +45,13 @@ if (!function_exists('env')) {
         }
     }
 }
+
+if (!function_exists('config')) {
+    function config(string $key): string|null {
+        try {
+            return $_ENV[$key];
+        } catch(Throwable $e) {            
+            return $default;
+        }
+    }
+}

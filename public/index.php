@@ -1,4 +1,6 @@
 <?php
+
+use App\Providers\TemplateEngineServiceProvider;
 use Lite\Http\Request;
 use Lite\Lite;
 use Lite\Routing\Router;

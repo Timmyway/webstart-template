@@ -1,11 +1,11 @@
 <?php
-namespace App\Providers;
+namespace Lite\Service\Provider;
 
 use Lite\Service\Container;
 use Lite\View\BladeOneTemplateEngine;
 use Lite\View\TemplateEngineFactory;
 
-class TemplateEngineServiceProvider {
+class TemplateEngineServiceProvider implements ProviderInterface {
     public function register(Container $containerBuilder) {
         $viewsPath = basePath('views'); // Replace with the actual path
         $cachePath = basePath('storage/cache'); // Replace with the actual path
