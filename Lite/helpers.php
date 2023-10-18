@@ -1,6 +1,7 @@
 <?php
 
 use Lite\Http\RedirectResponse;
+use Lite\Http\Response;
 
 function urlIs($value) {
     return $_SERVER['REQUEST_URI'] === $value;
@@ -76,5 +77,12 @@ if (!function_exists('redirect')) {
     {
         $resp = new RedirectResponse($url, $status, $headers);
         $resp->send();
+    }
+}
+
+if (!function_exists('response')) {
+    function response(string $content = '', int $status = 200, array $headers = [])
+    {
+        return new Response($content, $status, $headers);
     }
 }
