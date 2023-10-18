@@ -120,3 +120,10 @@ if (!function_exists('isActiveRroute')) {
     }
 
 }
+
+if (!function_exists('db')) {
+    function db()
+    {
+        return ContainerHolder::getContainer()->get('database')->capsule();
+    }
+}

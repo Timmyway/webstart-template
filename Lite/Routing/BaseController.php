@@ -7,12 +7,13 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 class BaseController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-    protected $container;    
+    protected $container;
+    protected $database;
 
-    protected function render(string $view, $datas = [])
+    protected function render(string $view, array $datas = [])
     {
         // $templateEngine = $request->getService('templateEngine');        
-        $templateEngine = $this->container->get('templateEngine')->getEngine();
+        $templateEngine = $this->container->get('templateEngine')->getEngine();        
         
         echo $templateEngine->render($view, $datas);
     }

@@ -5,15 +5,15 @@ use App\Controllers\AuthController;
 use Lite\Http\Request;
 use Lite\Http\Security\Auth;
 
-class AuthMiddleware implements MiddlewareInterface
+class AuthMiddleware extends Middleware
 {    
-    public function __invoke(Request $request, callable $controller)
-    {               
-        if (!Auth::user()->auth) {                        
-            // dd($controller);
-            
+    public function handle()
+    {        
+        if (!Auth::user($this->request) && !isActiveRoute('login')) {
+            return redirect('login');
         }
-        echo '===> Auth middleware...';
-        return $controller;
+        if (Auth::user($this->request) && isActiveRoute('login')) {
+            return redirect('home');
+        }       
     }
 }

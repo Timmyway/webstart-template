@@ -2,6 +2,7 @@
 
 use Lite\Event\EventDispatcher;
 use Lite\Http\Request;
+use Lite\Http\Session;
 use Lite\Lite;
 
 const BASEPATH = __DIR__ . '/../';
@@ -21,6 +22,10 @@ $dispatcher = new EventDispatcher();
 
 // Request setting
 $request = Request::init();
+$session = new Session();
+$session->start();
+$request->setSession($session);
+
 $lite = new Lite($dispatcher);
 $lite->run($request, $routes);
 

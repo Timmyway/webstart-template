@@ -6,5 +6,5 @@ use Lite\Http\Response;
 
 interface MiddlewareInterface
 {
-    public function __invoke(Request $request, callable $next);
+    public function handle(Request $request, callable $next, $routeDetails, ...$args);
 }

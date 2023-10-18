@@ -4,6 +4,7 @@ namespace Lite\Routing;
 use Exception;
 use Lite\Event\ControllerEvent;
 use Lite\Event\EventDispatcher as EventEventDispatcher;
+use Lite\Event\MiddlewareEvent;
 use Lite\Http\Middleware\ContainerInjectionMiddleware;
 use Lite\Http\Middleware\EventDispatcher;
 use Lite\Http\Middleware\MiddlewareStack;
@@ -53,7 +54,7 @@ class Router
                         
         } catch(ResourceNotFoundException $e) {            
             return redirect('lost');
-        } catch(Exception $e) {            
+        } catch(Exception $e) {
             $response = new Response("Une erreur est survenu sur le serveur: {$e->getMessage()}", 500);            
         }
         $response->send();
@@ -70,15 +71,22 @@ class Router
         // if ($this->requiresMiddleware($routeDetails)) {
         //     $controller = $this->runMiddlewares($controller);
         // }
+        $this->dispatcher->dispatch(
+            new MiddlewareEvent(
+                $this->request, 
+                $controller, 
+                $routeDetails, 
+                $this->middlewareStack
+            ), 'app.middleware'
+        );
         // $controller = $this->runMiddlewares($controller, $routeDetails);
         $arguments = $argumentResolver->getArguments($this->request, $controller);
         return call_user_func_array($controller, $arguments);
     }
 
     private function runMiddlewares($controller, $routeDetails)
-    {
-        // dd('Found middleware: ', $routeDetails['middleware'] ?? '');        
-        return $this->middlewareStack->execute($this->request, $controller);
+    {        
+        $this->middlewareStack->execute($this->request, $controller);
     }
 
     private function requiresMiddleware($routeDetails)

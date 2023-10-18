@@ -7,18 +7,22 @@ class MiddlewareStack
 {
     private $middlewares = [];
 
-    public function addMiddleware(string $name, callable $middleware, array $args, string $scope = 'global'): void
-    {
-        $this->middlewares[] = compact('name', 'middleware', 'args', 'scope');
+    public function addMiddleware(string $name, string $class, array $args = []): void
+    {        
+        $this->middlewares[] = compact('name', 'class', 'args');
     }
 
-    public function execute()
+    public function execute(Request $request, $controller, $routeDetails)
     {
         // Run all the middlewares in the stack, then return a controller         
         foreach ($this->middlewares as $middleware) {
-            $controller = $middleware['instance'](...$middleware['args']);
-        }
-
-        return $controller;
+            new $middleware['class'](
+                $middleware['name'],
+                $request, 
+                $controller, 
+                $routeDetails,                
+                $middleware['args']
+            );            
+        }        
     }
 }
