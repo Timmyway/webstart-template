@@ -56,7 +56,7 @@ class Lite
 
         $this->dispatcher->addListener('kernel.controller', function(ControllerEvent $e) {            
             // Inject container to aware controller
-            $containerInjector = new ContainerInjectionMiddleware(ContainerHolder::getContainer());
+            $containerInjector = new ContainerInjectionMiddleware(ContainerHolder::getContainer());            
             $controller = $containerInjector->handle($e->getController());
             $e->setController($controller);
         });
