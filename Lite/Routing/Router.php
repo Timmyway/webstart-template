@@ -45,7 +45,6 @@ class Router
         } catch(ResourceNotFoundException $e) {            
             return redirect('lost');
         } catch(Exception $e) {            
-            dd($e->getMessage());
             $response = new Response("Une erreur est survenu sur le serveur: {$e->getMessage()}", 500);            
         }
         $response->send();

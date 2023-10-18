@@ -16,4 +16,9 @@ class AuthController extends BaseController
     {        
         return response()->json(['name' => 'Tim'])->send();
     }
+
+    public function signOut(Request $request)
+    {        
+        return response()->json(['response' => 'Signed out'])->send();
+    }
 }
