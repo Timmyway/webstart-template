@@ -3,9 +3,8 @@ namespace App\Controllers;
 
 use Lite\Http\Request;
 use Lite\Http\Response;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
-class SiteController extends BaseController
+class SiteController extends Controller
 {
     public function home()
     {        

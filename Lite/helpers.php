@@ -2,6 +2,7 @@
 
 use Lite\Http\RedirectResponse;
 use Lite\Http\Response;
+use Lite\Service\ContainerHolder;
 
 function urlIs($value) {
     return $_SERVER['REQUEST_URI'] === $value;
@@ -84,5 +85,13 @@ if (!function_exists('response')) {
     function response(string $content = '', int $status = 200, array $headers = [])
     {
         return new Response($content, $status, $headers);
+    }
+}
+
+if (!function_exists('route')) {
+    function route(string $routeName = ''): string
+    {
+        $routeHelper = ContainerHolder::getContainer()->get('routeHelper');
+        return $routeHelper->generateUrl($routeName);
     }
 }

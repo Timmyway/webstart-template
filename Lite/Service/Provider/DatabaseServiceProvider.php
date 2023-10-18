@@ -7,7 +7,7 @@ use Lite\Service\Container;
 
 class DatabaseServiceProvider implements ProviderInterface {
 
-    public function register(Container $containerBuilder) {
+    public function register(Container $containerBuilder, $params = null) {
         // Load config file
         $config = new ConfigLoader();
         $databaseConfig = $config->get('database.connections')[env('DB_CONNECTION')];

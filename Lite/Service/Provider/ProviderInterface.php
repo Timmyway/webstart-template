@@ -5,5 +5,5 @@ use Lite\Service\Container;
 
 interface ProviderInterface
 {
-    public function register(Container $containerBuilder);
+    public function register(Container $containerBuilder, array $params);
 }

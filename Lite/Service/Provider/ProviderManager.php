@@ -12,15 +12,19 @@ class ProviderManager
         $this->container = $container;
     }
 
-    public function register(ProviderInterface $provider): void
+    public function register(array $providerData): void
     {
-        $this->providers[] = $provider;
+        $this->providers[] = $providerData;
+        // dd($this->providers);
     }    
 
     public function boot(): void
     {
-        foreach ($this->providers as $provider) {
-            $this->container = $provider->register($this->container);
+        foreach ($this->providers as $providerData) {
+            $providerClass = $providerData[0];
+            $params = $providerData[1] ?? [];            
+            $provider = new $providerClass();
+            $this->container = $provider->register($this->container, $params);
         }
     }
 }
