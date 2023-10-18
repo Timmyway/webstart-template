@@ -41,7 +41,8 @@ class AuthController extends BaseController
     }
 
     public function signOut(Request $request)
-    {        
-        return response()->json(['response' => 'Signed out'])->send();
+    {
+        $request->getSession()->invalidate();
+        return redirect('login');
     }
 }
