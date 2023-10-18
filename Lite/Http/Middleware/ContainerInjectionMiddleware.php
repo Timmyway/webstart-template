@@ -11,10 +11,10 @@ class ContainerInjectionMiddleware
 
     public function __construct(Container $container)
     {
-        $this->container = $container;
+        $this->container = $container;        
     }
 
-    public function __invoke(Request $request, $controller)
+    public function handle($controller)
     {        
         // Check if the controller's class is aware of container
         if (is_array($controller) && $controller[0] instanceof ContainerAwareInterface) {

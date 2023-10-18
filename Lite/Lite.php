@@ -1,14 +1,13 @@
 <?php
 namespace Lite;
 
-use Lite\Http\Middleware\AuthMiddleware;
+use Lite\Event\ControllerEvent;
+use Lite\Event\EventDispatcher;
 use Lite\Http\Request;
 use Lite\Routing\Router;
 use Lite\Routing\Routes;
 use Lite\Http\Middleware\ContainerInjectionMiddleware;
-use Lite\Http\Middleware\EventDispatcher;
 use Lite\Http\Middleware\MiddlewareStack;
-use Lite\Http\Security\Auth;
 use Lite\Service\Container;
 use Lite\Service\ContainerHolder;
 use Lite\Service\Provider\DatabaseServiceProvider;
@@ -18,7 +17,13 @@ use Lite\Service\Provider\TemplateEngineServiceProvider as ProviderTemplateEngin
 
 class Lite
 {
-    private $router;        
+    private $router;
+    private $dispatcher;
+
+    public function __construct(EventDispatcher $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
 
     public function run(Request $request, Routes $routes)
     {        
@@ -26,18 +31,6 @@ class Lite
         // Setup environment variable
         $dotenv = \Dotenv\Dotenv::createImmutable(basePath());
         $dotenv->load();
-
-        // Dispatcher
-        $dispatcher = new EventDispatcher();
-        $dispatcher->addListener('auth', function() {
-            if (!Auth::user()->auth && !isActiveRoute('login')) {
-                // dd('Authorization is required !!!');
-                return redirect('login');
-            }
-            if (isActiveRoute('login')) {
-                return redirect('lost');
-            }
-        });
 
         // Register the Template Engine Service Provider.
         $container = new Container;
@@ -58,9 +51,16 @@ class Lite
 
         // Add middlewares
         $middlewareStack = new MiddlewareStack();
-        $middlewareStack->addMiddleware('injectContainer', new ContainerInjectionMiddleware(ContainerHolder::getContainer()));
+        // $middlewareStack->addMiddleware('injectContainer', new ContainerInjectionMiddleware(ContainerHolder::getContainer()));
         // $middlewareStack->addMiddleware('auth', new AuthMiddleware());
+
+        $this->dispatcher->addListener('kernel.controller', function(ControllerEvent $e) {            
+            // Inject container to aware controller
+            $containerInjector = new ContainerInjectionMiddleware(ContainerHolder::getContainer());
+            $controller = $containerInjector->handle($e->getController());
+            $e->setController($controller);
+        });
                 
-        $this->router = new Router($request, $routes->getRouteCollections(), $middlewareStack, $dispatcher);
+        $this->router = new Router($request, $routes->getRouteCollections(), $middlewareStack, $this->dispatcher);
     }
 }

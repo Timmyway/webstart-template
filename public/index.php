@@ -1,17 +1,27 @@
 <?php
 
-use App\Providers\TemplateEngineServiceProvider;
+use Lite\Event\EventDispatcher;
 use Lite\Http\Request;
 use Lite\Lite;
-use Lite\Routing\Router;
-use Symfony\Component\Routing\RouteCollection;
 
 const BASEPATH = __DIR__ . '/../';
 require '../App/bootstrap.php';
 
+// Dispatcher
+$dispatcher = new EventDispatcher();
+// $dispatcher->addListener('auth', function() {
+//     if (!Auth::user()->auth && !isActiveRoute('login')) {
+//         // dd('Authorization is required !!!');
+//         return redirect('login');
+//     }
+//     if (isActiveRoute('login')) {
+//         return redirect('lost');
+//     }
+// });
+
 // Request setting
 $request = Request::init();
-$lite = new Lite();
+$lite = new Lite($dispatcher);
 $lite->run($request, $routes);
 
 // $router = new Router();

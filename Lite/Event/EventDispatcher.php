@@ -1,5 +1,5 @@
 <?php
-namespace Lite\Http\Middleware;
+namespace Lite\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcher as EventDispatcherEventDispatcher;
 

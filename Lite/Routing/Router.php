@@ -2,6 +2,8 @@
 namespace Lite\Routing;
 
 use Exception;
+use Lite\Event\ControllerEvent;
+use Lite\Event\EventDispatcher as EventEventDispatcher;
 use Lite\Http\Middleware\ContainerInjectionMiddleware;
 use Lite\Http\Middleware\EventDispatcher;
 use Lite\Http\Middleware\MiddlewareStack;
@@ -22,13 +24,13 @@ class Router
     protected $routes;
     private $request;
     private $middlewareStack;
-    private $eventDispatcher;
+    private $dispatcher;
     
-    public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack, EventDispatcher $eventDispatcher) {
+    public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack, EventEventDispatcher $dispatcher) {
         $this->request = $request;
         $this->routes = $routes;        
         $this->middlewareStack = $middlewareStack;
-        $this->eventDispatcher = $eventDispatcher;
+        $this->dispatcher = $dispatcher;
         $this->setup();
     }
 
@@ -62,12 +64,13 @@ class Router
         // Use resolver to find the appropriate controller, methods and attributes
         $controllerResolver = new ControllerResolver();
         $argumentResolver = new ArgumentResolver();        
-        $controller = $controllerResolver->getController($this->request);        
+        $controller = $controllerResolver->getController($this->request);
+        $this->dispatcher->dispatch(new ControllerEvent($controller), 'kernel.controller');
         // Run middlewares only if needed
         // if ($this->requiresMiddleware($routeDetails)) {
         //     $controller = $this->runMiddlewares($controller);
         // }
-        $controller = $this->runMiddlewares($controller, $routeDetails);
+        // $controller = $this->runMiddlewares($controller, $routeDetails);
         $arguments = $argumentResolver->getArguments($this->request, $controller);
         return call_user_func_array($controller, $arguments);
     }
@@ -75,7 +78,6 @@ class Router
     private function runMiddlewares($controller, $routeDetails)
     {
         // dd('Found middleware: ', $routeDetails['middleware'] ?? '');        
-        $this->eventDispatcher->dispatch(new Event, 'auth');
         return $this->middlewareStack->execute($this->request, $controller);
     }
 
