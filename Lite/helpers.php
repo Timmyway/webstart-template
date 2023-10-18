@@ -1,11 +1,13 @@
 <?php
 
 use Lite\Http\RedirectResponse;
+use Lite\Http\Request;
 use Lite\Http\Response;
 use Lite\Service\ContainerHolder;
 
 function urlIs($value) {
-    return $_SERVER['REQUEST_URI'] === $value;
+    $request = Request::createFromGlobals();
+    return $request->getPathInfo() === $value;
 }
 
 function basePath(string $path = ''): string {
@@ -94,4 +96,27 @@ if (!function_exists('route')) {
         $routeHelper = ContainerHolder::getContainer()->get('routeHelper');
         return $routeHelper->generateUrl($routeName);
     }
+}
+
+if (!function_exists('isActiveRroute')) {
+    function isActiveRoute(string $routeName = ''): string
+    {        
+        try {
+            $request = Request::createFromGlobals();
+            $currentRoute = $request->getRequestUri();
+            $currentUrl = route($routeName)   ;     
+
+            $parsedUrl = parse_url($currentUrl);        
+            $currentPath = $parsedUrl['path'];        
+
+            if ($currentPath === $currentRoute) {                
+                return true;
+            } else {
+                return false;
+            }                    
+        } catch(Throwable $e) {            
+            return false;
+        }
+    }
+
 }

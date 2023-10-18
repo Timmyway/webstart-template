@@ -7,10 +7,8 @@ use Lite\Routing\BaseController;
 class AuthController extends BaseController
 {
     public function loginPage(Request $request)
-    {
-        $users = $this->db()->table('users')->get();
-        $route = route('login');
-        dd($route);
+    {        
+        $route = route('login');        
         return $this->render('pages.login');
     }
 
