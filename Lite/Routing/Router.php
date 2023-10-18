@@ -3,6 +3,7 @@ namespace Lite\Routing;
 
 use Exception;
 use Lite\Http\Middleware\ContainerInjectionMiddleware;
+use Lite\Http\Middleware\EventDispatcher;
 use Lite\Http\Middleware\MiddlewareStack;
 use Lite\Http\Response;
 use Lite\Service\Container;
@@ -14,17 +15,20 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class Router
 {
     protected $routes;
     private $request;
     private $middlewareStack;
+    private $eventDispatcher;
     
-    public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack) {
+    public function __construct(Request $request, RouteCollection $routes, MiddlewareStack $middlewareStack, EventDispatcher $eventDispatcher) {
         $this->request = $request;
         $this->routes = $routes;        
         $this->middlewareStack = $middlewareStack;
+        $this->eventDispatcher = $eventDispatcher;
         $this->setup();
     }
 
@@ -38,9 +42,12 @@ class Router
             // Setting of URL matcher
             $pathInfo = $this->request->getPathInfo();
             $urlMather = new UrlMatcher($this->routes, $context);
-            $this->request->attributes->add($urlMather->match($pathInfo));
+            // Check if require middleware
             
-            $this->callController();
+            $routeDetails = $urlMather->match($pathInfo);
+            $this->request->attributes->add($routeDetails);
+            
+            $this->callController($routeDetails);
                         
         } catch(ResourceNotFoundException $e) {            
             return redirect('lost');
@@ -50,20 +57,34 @@ class Router
         $response->send();
     }    
 
-    private function callController()
-    {        
+    private function callController($routeDetails)
+    {
         // Use resolver to find the appropriate controller, methods and attributes
         $controllerResolver = new ControllerResolver();
         $argumentResolver = new ArgumentResolver();        
-        $controller = $controllerResolver->getController($this->request);
-        // Run middlewares
-        $controller = $this->runMiddlewares($controller);        
-        $arguments = $argumentResolver->getArguments($this->request, $controller);        
+        $controller = $controllerResolver->getController($this->request);        
+        // Run middlewares only if needed
+        // if ($this->requiresMiddleware($routeDetails)) {
+        //     $controller = $this->runMiddlewares($controller);
+        // }
+        $controller = $this->runMiddlewares($controller, $routeDetails);
+        $arguments = $argumentResolver->getArguments($this->request, $controller);
         return call_user_func_array($controller, $arguments);
     }
 
-    private function runMiddlewares($controller)
-    {        
+    private function runMiddlewares($controller, $routeDetails)
+    {
+        // dd('Found middleware: ', $routeDetails['middleware'] ?? '');        
+        $this->eventDispatcher->dispatch(new Event, 'auth');
         return $this->middlewareStack->execute($this->request, $controller);
+    }
+
+    private function requiresMiddleware($routeDetails)
+    {
+        // Logic to check if the route requires middleware
+        // You can implement your own logic to determine if a route needs middleware
+        // For example, check the route name or any other relevant attributes
+
+        return $routeDetails['middleware'] ?? false; // Modify this condition as per your route configuration
     }
 }

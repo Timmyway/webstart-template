@@ -21,27 +21,32 @@ class Routes
 
     public function get(string $name, string $route, array $routeParams)
     {
-        return $this->addRoute('GET', $name, $route, $routeParams);
+        $this->addRoute('GET', $name, $route, $routeParams);
+        return $this;
     }
 
     public function post(string $name, string $route, array $routeParams)
     {
-        return $this->addRoute('POST', $name, $route, $routeParams);
+        $this->addRoute('POST', $name, $route, $routeParams);
+        return $this;
     }
 
     public function put(string $name, string $route, array $routeParams)
     {
-        return $this->addRoute('PUT', $name, $route, $routeParams);
+        $this->addRoute('PUT', $name, $route, $routeParams);
+        return $this;
     }
 
     public function PATCH(string $name, string $route, array $routeParams)
     {
-        return $this->addRoute('PATCH', $name, $route, $routeParams);
+        $this->addRoute('PATCH', $name, $route, $routeParams);
+        return $this;
     }
 
     public function delete(string $name, string $route, array $routeParams)
     {
-        return $this->addRoute('DELETE', $name, $route, $routeParams);
+        $this->addRoute('DELETE', $name, $route, $routeParams);
+        return $this;
     }    
 
     public function getRouteCollections()

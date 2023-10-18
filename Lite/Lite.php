@@ -1,21 +1,20 @@
 <?php
 namespace Lite;
 
-use App\Providers\TemplateEngineServiceProvider;
-use Lite\Database\DatabaseManager;
+use Lite\Http\Middleware\AuthMiddleware;
 use Lite\Http\Request;
 use Lite\Routing\Router;
 use Lite\Routing\Routes;
 use Lite\Http\Middleware\ContainerInjectionMiddleware;
+use Lite\Http\Middleware\EventDispatcher;
 use Lite\Http\Middleware\MiddlewareStack;
-use Lite\Routing\RouteHelper;
+use Lite\Http\Security\Auth;
 use Lite\Service\Container;
 use Lite\Service\ContainerHolder;
 use Lite\Service\Provider\DatabaseServiceProvider;
 use Lite\Service\Provider\ProviderManager;
 use Lite\Service\Provider\RouteServiceProvider;
 use Lite\Service\Provider\TemplateEngineServiceProvider as ProviderTemplateEngineServiceProvider;
-use Symfony\Component\Routing\RequestContext;
 
 class Lite
 {
@@ -27,6 +26,18 @@ class Lite
         // Setup environment variable
         $dotenv = \Dotenv\Dotenv::createImmutable(basePath());
         $dotenv->load();
+
+        // Dispatcher
+        $dispatcher = new EventDispatcher();
+        $dispatcher->addListener('auth', function() {
+            if (!Auth::user()->auth && !isActiveRoute('login')) {
+                // dd('Authorization is required !!!');
+                return redirect('login');
+            }
+            if (isActiveRoute('login')) {
+                return redirect('lost');
+            }
+        });
 
         // Register the Template Engine Service Provider.
         $container = new Container;
@@ -47,8 +58,9 @@ class Lite
 
         // Add middlewares
         $middlewareStack = new MiddlewareStack();
-        $middlewareStack->addMiddleware(new ContainerInjectionMiddleware(ContainerHolder::getContainer()));
+        $middlewareStack->addMiddleware('injectContainer', new ContainerInjectionMiddleware(ContainerHolder::getContainer()));
+        // $middlewareStack->addMiddleware('auth', new AuthMiddleware());
                 
-        $this->router = new Router($request, $routes->getRouteCollections(), $middlewareStack);
+        $this->router = new Router($request, $routes->getRouteCollections(), $middlewareStack, $dispatcher);
     }
 }

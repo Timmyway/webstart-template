@@ -24,6 +24,7 @@
         "symfony/dependency-injection": "^6.3",
         "vlucas/phpdotenv": "^5.5",
         "illuminate/database": "^10.28",
-        "vlucas/valitron": "^1.4"
+        "vlucas/valitron": "^1.4",
+        "symfony/event-dispatcher": "^6.3"
     }
 }

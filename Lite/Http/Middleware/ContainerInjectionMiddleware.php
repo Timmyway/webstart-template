@@ -20,7 +20,7 @@ class ContainerInjectionMiddleware
         if (is_array($controller) && $controller[0] instanceof ContainerAwareInterface) {
             // If it is the case, we inject the container to the controller
             $controller[0]->setContainer($this->container);
-        }
+        }        
 
         return $controller;
     }

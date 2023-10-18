@@ -4,9 +4,9 @@ use Lite\Routing\Routes;
 
 $routes = new Routes;
 
-$routes->get('home', '/', ['_controller' => 'App\Controllers\SiteController::home']);
+$routes->get('home', '/', ['_controller' => 'App\Controllers\SiteController::home', 'middleware' => 'auth']);
 $routes->get('about', '/about', ['_controller' => 'App\Controllers\SiteController::about']);
-$routes->get('users', '/users', ['_controller' => 'App\Controllers\SiteController::users']);
+$routes->get('users', '/users', ['_controller' => 'App\Controllers\SiteController::users', 'middleware' => 'auth']);
 $routes->get('login', '/login', ['_controller' => 'App\Controllers\AuthController::loginPage']);
 $routes->post('logout', '/logout', ['_controller' => 'App\Controllers\AuthController::signOut']);
 $routes->post('login.signin', '/login', ['_controller' => 'App\Controllers\AuthController::signIn']);
