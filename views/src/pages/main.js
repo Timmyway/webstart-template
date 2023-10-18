@@ -4,6 +4,10 @@ export default {
     setup() {
         const say = ref('Hello from Timmy Way !');
 
-        return { say }
+        const display = ref({
+            navDropdown: false
+        });
+
+        return { display }
     }
 }

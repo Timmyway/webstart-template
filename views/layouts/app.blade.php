@@ -11,16 +11,20 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans&display=swap" rel="stylesheet">        
     </head>
-    <body class="h-full">
-        @section('navbar')
-        @include('partials.nav')
-        @show
+    <body class="antialised">
+        <div id="app" class="flex flex-col min-h-screen">
+            <header>
+                @section('navbar')
+                @include('partials.nav')
+                @show
+            </header>
+            
+            @yield('content')            
 
-        @yield('content')
-
-        @section('footer')
-        @include('partials.footer')
-        @show
+            @section('footer')
+            @include('partials.footer')
+            @show
+        </div>        
 
         <!-- if development -->
 		<script type="module" src="http://127.0.0.1:5173/@vite/client"></script>

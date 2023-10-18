@@ -24,7 +24,7 @@ class SiteController extends Controller
         $db = $this->container->get('database')->capsule();
         $users = $db->table('users')->select('id', 'name', 'email')->get();
         // dd($users);
-        return $this->render('pages.about', ['users' => $users]);
+        return $this->render('pages.users', ['users' => $users]);
     }
 
     public function lost()
