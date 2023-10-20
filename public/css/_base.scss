@@ -5,6 +5,8 @@
 	line-height: 1.2;
 }
 
+[v-cloak] { display: none !important; }
+
 body {
 	font-family: $primaryFont;
 	box-sizing: border-box;	

@@ -10,14 +10,14 @@ class Auth
     public static function user(Request $request)
     {        
         // $request = ContainerHolder::getContainer()->get('request')->getSession();
-        $authUserEmail = $request->getSession()->get('user');        
+        $authUserEmail = $request->getSession()->get('user');
         $user = db()->table('users')
-            ->where('email', $authUserEmail)
+            ->where('id', $authUserEmail)
             ->select('id', 'name', 'email')
             ->first();
         if (!$user) {
             return null;
-        }
+        }        
         return $user;
     }
 }

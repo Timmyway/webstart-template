@@ -8,7 +8,7 @@ class BaseController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     protected $container;
-    protected $database;
+    protected $database;    
 
     protected function render(string $view, array $datas = [])
     {

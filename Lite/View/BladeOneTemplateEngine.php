@@ -6,13 +6,13 @@ use Throwable;
 
 class BladeOneTemplateEngine implements TemplateEngineInterface {
     private static $instance;
-    private $_engine;
+    private BladeOne $_engine;
     private $errorPage;
 
     private function __construct($viewsPath, $cachePath, $errorPage = 'pages.404') {
-        $this->_engine = new BladeOne($viewsPath, $cachePath, BladeOne::MODE_AUTO);
-        $this->errorPage = $errorPage;
-    }
+        $this->_engine = new BladeOne($viewsPath, $cachePath, BladeOne::MODE_DEBUG);
+        $this->errorPage = $errorPage;        
+    }    
 
     public static function getInstance($viewsPath, $cachePath)
     {

@@ -78,6 +78,11 @@ if (!function_exists('now')) {
 if (!function_exists('redirect')) {
     function redirect(string $url, int $status = 302, array $headers = [])
     {
+        try {
+            $url = route($url);
+        } catch (Exception $e) {
+            $url = route('lost');
+        }
         $resp = new RedirectResponse($url, $status, $headers);
         $resp->send();
     }

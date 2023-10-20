@@ -33,7 +33,7 @@ abstract class Middleware
         if ($this->apply()) {
             $this->handle();
         } else {
-            echo 'You are on a public page...';
+            echo '<span class="opacity-50 p-2 text-xs">You are on a public page...</span>';
         }
     }
 

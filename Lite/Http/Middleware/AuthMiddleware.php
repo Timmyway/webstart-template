@@ -9,11 +9,13 @@ class AuthMiddleware extends Middleware
 {    
     public function handle()
     {        
-        if (!Auth::user($this->request) && !isActiveRoute('login')) {
+        // dd('before');
+        $isLoggedIn = $this->request->getSession()->has('loggedIn');        
+        if (!$isLoggedIn && !isActiveRoute('login')) {
             return redirect('login');
-        }
-        if (Auth::user($this->request) && isActiveRoute('login')) {
-            return redirect('home');
-        }       
+        } else if ($isLoggedIn && isActiveRoute('login')) {
+            // Logged in and visit login page
+            return redirect('nowhere');
+        }        
     }
 }
