@@ -8,10 +8,7 @@
         </p>
         <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
             <li>
-                <a href="about" class="mr-4 hover:underline md:mr-6 ">About</a>
-            </li>
-            <li>
-                <a href="users" class="mr-4 hover:underline md:mr-6">Users</a>
+                <a href="{{ route('profile') }}" class="mr-4 hover:underline md:mr-6 ">About</a>
             </li>            
         </ul>
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© {{ now()->format('Y') }} <a href="#" class="hover:underline">Timmyway™</a>. All Rights Reserved.</span>

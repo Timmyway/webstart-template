@@ -24,7 +24,7 @@
                     >
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    <img class="h-8 w-8 rounded-full" src="{{ asset('images/profile.WebP') }}" alt="">
                     </button>
                 </div>
 
@@ -72,7 +72,7 @@
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="{{ route('home') }}" class="{{ urlIs('/') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="{{ route('profile') }}" class="{{ urlIs('/profile') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium">Profile</a>            
+            <a href="{{ route('profile') }}" class="{{ urlIs('/profile') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium">Profile</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-5">

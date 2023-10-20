@@ -5,7 +5,7 @@
   <h1
     class="px-8 mt-16 mb-4 text-5xl font-extrabold leading-tight text-center xl:text-6xl"
   >
-    Starting template for <span class="text-indigo-700">Lite framework</span>
+    Développez plus vite votre projets avec<br> <span class="text-indigo-700">Lite framework</span>
   </h1>
   <p class="max-w-xl mx-auto mb-8 text-xl text-center xl:max-w-2xl">
     Notre framework <strong class="text-2xl">Lite</strong> vous permet de démarrer rapidement en suivant les meilleures pratiques. Vous économiserez considérablement du temps pour les projets de petite envergure, tout en renforçant la sécurité et l'efficacité par rapport à des frameworks plus volumineux.
@@ -15,26 +15,27 @@
   >
     <a
       class="w-full mb-4 px-4 py-2 text-white text-xl font-bold whitespace-no-wrap bg-indigo-600 btn md:w-auto hover:bg-indigo-500"
-      href="#"
+      href="https://github.com/Timmyway/webstart-template.git" target="_blank"
     >
-      Get started
+      Je suis interressé
     </a>    
   </div>
   <div class="mb-16">
     <img
       class="block w-full max-w-5xl mx-auto rounded"
-      src="{{ asset('images/pages/home/video-placeholder.jpg') }}"
+      src="{{ asset('images/pages/home/group-human-hands-holding-together.WebP') }}"
       alt=""
     />
   </div>
   <div>
-    <h2 class="title sm:text-4xl md:text-5xl">
-      Build up the whole picture
+    <h2 class="text-center mb-4 sm:text-4xl md:text-5xl">
+      Pensé pour être simple et performant
     </h2>
-    <p class="mb-16 mx-auto intro sm:max-w-xl">
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum — semper quis lectus nulla
-      at volutpat diam ut venenatis.
+    <p class="mb-16 mx-auto intro sm:max-w-xl text-gray-500">
+      Un microframework agile conçu pour les projets modestes, 
+      offrant une sécurité renforcée et une rapidité de développement optimale. 
+      Une alternative légère, flexible et rapide aux frameworks plus imposants, 
+      idéale pour les projets de petite envergure.
     </p>
     <ul
       class="flex flex-col flex-wrap justify-center mb-20 text-center border-b border-gray-900 sm:flex-row"
@@ -43,102 +44,55 @@
         <span
           class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
         >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-01.svg') }}" alt="" />
+          <img src="{{ asset('images/pages/icons/cool.png') }}" alt="" />
         </span>
-        <h3 class="mb-2 text-2xl font-bold text-white">Robust Workflow</h3>
+        <h3 class="mb-2 text-2xl font-bold text-dark">Un Microframework Agile</h3>
         <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
+          Alliez sécurité et rapidité avec un microframework agile, 
+          conçu spécialement pour les petits projets. 
+          Simplifiez le développement sans compromettre la flexibilité ni la puissance.
         </p>
       </li>
       <li class="w-full px-6 mb-8 sm:mb-16 md:w-1/2 lg:w-1/3">
         <span
           class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
         >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-02.svg') }}" alt="" />
+          <img src="{{ asset('images/pages/icons/code.png') }}" alt="" />
         </span>
-        <h3 class="mb-2 text-2xl font-bold text-white">Robust Workflow</h3>
+        <h3 class="mb-2 text-2xl font-bold text-dark"> Rapidité de Développement</h3>
         <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
+          Accélérez votre processus de développement avec un framework réactif, 
+          offrant une solution rapide et efficace pour concrétiser vos idées sans délai.
         </p>
       </li>
       <li class="w-full px-6 mb-8 sm:mb-16 md:w-1/2 lg:w-1/3">
         <span
           class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
         >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-03.svg') }}" alt="" />
+          <img src="{{ asset('images/pages/icons/lightning.png') }}" alt="" />
         </span>
-        <h3 class="mb-2 text-2xl font-bold text-white">Robust Workflow</h3>
+        <h3 class="mb-2 text-2xl font-bold text-dark">Flexibilité et Légèreté</h3>
         <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
+          Libérez votre potentiel créatif avec un cadre flexible et léger, 
+          parfaitement adapté pour les projets agiles où la liberté et la rapidité sont essentielles.
         </p>
-      </li>
-      <li class="w-full px-6 mb-8 sm:mb-16 md:w-1/2 lg:w-1/3">
-        <span
-          class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
-        >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-04.svg') }}" alt="" />
-        </span>
-        <h3 class="mb-2 text-2xl font-medium text-white">
-          Robust Workflow
-        </h3>
-        <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
-        </p>
-      </li>
-      <li class="w-full px-6 mb-8 sm:mb-16 md:w-1/2 lg:w-1/3">
-        <span
-          class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
-        >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-05.svg') }}" alt="" />
-        </span>
-        <h3 class="mb-2 text-2xl font-medium text-white">
-          Robust Workflow
-        </h3>
-        <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
-        </p>
-      </li>
-      <li class="w-full px-8 mb-8 sm:mb-16 md:w-1/2 lg:w-1/3">
-        <span
-          class="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white bg-indigo-700 rounded-full"
-        >
-          <img src="{{ asset('images/pages/home/feature-tile-icon-06.svg') }}" alt="" />
-        </span>
-        <h3 class="mb-2 text-2xl font-medium text-white">
-          Robust Workflow
-        </h3>
-        <p class="max-w-xs mx-auto text-lg text-gray-500">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat.
-        </p>
-      </li>
+      </li>      
     </ul>
   </div>
   <div class="mb-16 border-b border-gray-800">
-    <h2 class="mb-2 title sm:text-4xl md:text-5xl">
-      Workflow that just works
+    <h2 class="mb-2 title sm:text-4xl md:text-5xl text-center">
+      Un framework adapté à votre utilisation
     </h2>
     <p class="mb-20 mx-auto intro sm:max-w-xl">
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum — semper quis lectus nulla
-      at volutpat diam ut venenatis.
+      Lite Framework : Léger et flexible, il simplifie le développement d'applications web robustes 
+      en s'appuyant sur les bases éprouvées de Laravel et Symfony. 
+      Une solution simple mais puissante pour des applications évolutives et performantes.
     </p>
     <div class="flex flex-col mb-8 sm:flex-row">
       <div class="flex items-center mb-8 sm:w-1/2 md:w-5/12 sm:order-last">
         <img
           class="rounded-sm"
-          src="{{ asset('images/pages/home/features-split-image-01.png') }}"
+          src="{{ asset('images/pages/home/business.WebP') }}"
           alt=""
         />
       </div>
@@ -148,16 +102,14 @@
         <p
           class="mb-2 text-sm font-semibold leading-none text-center text-indigo-600 uppercase sm:text-left"
         >
-          Lightning fast workflow
+          Légèreté et rapide
         </p>
         <h3 class="title title-small sm:text-left md:text-4xl">
-          Data-driven insights
+          Un Framework Agile pour un Développement Réactif
         </h3>
         <p class="text md:text-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Découvrez une expérience de développement fluide grâce à un framework léger 
+          qui simplifie la création d'applications sans compromettre la puissance ou la flexibilité.
         </p>
       </div>
     </div>
@@ -165,7 +117,7 @@
       <div class="flex items-center mb-8 sm:w-1/2 md:w-5/12">
         <img
           class="rounded-sm"
-          src="{{ asset('images/pages/home/features-split-image-02.png') }}"
+          src="{{ asset('images/pages/home/tech.WebP') }}"
           alt=""
         />
       </div>
@@ -175,16 +127,15 @@
         <p
           class="mb-2 text-sm font-semibold leading-none text-center text-indigo-600 uppercase sm:text-left"
         >
-          Lightning fast workflow
+          Flexibilité sans compromis
         </p>
         <h3 class="title title-small sm:text-left md:text-4xl">
-          Data-driven insights
+          Un Cadre adapté et sur mesure
         </h3>
         <p class="text md:text-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Bénéficiez d'une flexibilité maximale pour façonner vos applications selon vos besoins, 
+          en intégrant des composants de renom tels que ceux de Laravel et Symfony, 
+          tout en adaptant votre approche de développement.
         </p>
       </div>
     </div>
@@ -192,7 +143,7 @@
       <div class="flex items-center mb-8 sm:w-1/2 md:w-5/12 sm:order-last">
         <img
           class="rounded-sm"
-          src="{{ asset('images/pages/home/features-split-image-03.png') }}"
+          src="{{ asset('images/pages/home/quality.WebP') }}"
           alt=""
         />
       </div>
@@ -202,51 +153,16 @@
         <p
           class="mb-2 text-sm font-semibold leading-none text-center text-indigo-600 uppercase sm:text-left"
         >
-          Lightning fast workflow
+          Simplicité d'utilisation
         </p>
         <h3 class="title title-small sm:text-left md:text-4xl">
-          Data-driven insights
+          Une Expérience Intuitive pour des Applications Puissantes
         </h3>
         <p class="text md:text-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Appréciez une expérience de développement simplifiée grâce à une structure intuitive et conviviale 
+          qui vous permet de vous concentrer sur la création d'applications sans les tracas de la complexité excessive.
         </p>
       </div>
-    </div>
-  </div>  
-  <div
-    class="flex flex-col items-center px-4 py-8 mb-16 bg-indigo-700 bg-right-bottom bg-no-repeat bg-cover sm:flex-row sm:py-16 sm:px-12"
-    style="background-image: url('{{ asset('images/pages/home/cta-illustration.svg') }} )"
-  >
-    <h2
-      class="max-w-xs mx-auto mb-10 text-2xl font-bold text-center text-white sm:text-3xl sm:mr-10 sm:max-w-full sm:text-left sm:w-1/3 sm:mx-0 sm:mb-0 md:w-1/2 lg:w-7/12"
-    >
-      For previewing layouts and visual?
-    </h2>
-    <div class="flex flex-grow w-full sm:w-2/3 md:w-1/2 lg:w-5/12">
-      <form
-        class="flex items-center w-full p-4 bg-white rounded-sm space-between"
-        action="#"
-      >
-        <input
-          class="flex-grow text-gray-900 placeholder-gray-500 bg-white appearance-none"
-          type="text"
-          placeholder="Your best email"
-        />
-        <svg
-          class="text-indigo-700 fill-current"
-          width="16"
-          height="12"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9 5H1c-.6 0-1 .4-1 1s.4 1 1 1h8v5l7-6-7-6v5z"
-            fill="#376DF9"
-          ></path>
-        </svg>
-      </form>
     </div>
   </div>  
 </div>

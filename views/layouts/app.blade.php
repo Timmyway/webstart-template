@@ -7,7 +7,7 @@
 		<meta property="og:url" content="" />
 		<meta property="og:image" content="" />
 		<meta property="og:description" content="Template de base pour une petite application en PHP" />
-        <title>Webstart template</title>
+        <title>Lite Webstart</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans&display=swap" rel="stylesheet">        
         @yield('head')
