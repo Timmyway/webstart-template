@@ -1,12 +1,21 @@
+![My Project Logo](public/images/logo-dark.WebP)
 ### Description
 
 Lite is a lightweight, yet powerful micro framework designed for small-scale projects and personal use. With seamless integration of essential components like Illuminate Database and Symfony routing, along with built-in template engine support, it offers a hassle-free development experience. Tailored for simplicity and flexibility, Lite enables swift setup and easy management for your personal web development endeavors.
 
 ### Installation
-- Install PHP dependencies using composer install.
-- Install frontend dependencies with npm install.
-- Configure your server to point to the index.php front controller located in the public folder.
-- Launch the Vite server by running npm run dev.
+1. Install PHP dependencies using composer install.
+2. Install frontend dependencies with npm install.
+3. Create your database file manually. Ex: storage/database/database.sqlite
+5. Create your "cache" folder at root.
+4. Create a new .env file (taike .env.example as model).
+5. Change your environment variables to suit your need.
+DB_DATABASE=storage/database/database.sqlite
+APP_URL=http://localhost:8500/
+6. Migrate your database (create user table) + seed new users.
+7. Configure your server to point to the index.php front controller located in the public folder.
+Ex: php -S localhost:8500 -t public
+8. Launch the Vite server by running npm run dev.
 
 ### Roadmap
 #### Features

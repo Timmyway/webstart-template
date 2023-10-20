@@ -15,17 +15,10 @@ class UserSeeder extends DatabaseBuilder
                 'password' => liteHash('1234'),
                 'is_admin' => true,
                 'created_at' => now()->getTimestamp()
-            ],
+            ],            
             [
-                'name' => 'Pierre',
-                'email' => 'pierre@example.com',
-                'password' => liteHash('1234'),
-                'is_admin' => true,
-                'created_at' => now()->getTimestamp()
-            ],
-            [
-                'name' => 'Nina',
-                'email' => 'nina@example.com',
+                'name' => 'Lanja',
+                'email' => 'lanja@example.com',
                 'password' => liteHash('1234'),
                 'is_admin' => true,
                 'created_at' => now()->getTimestamp()
