@@ -12,19 +12,13 @@ class SiteController extends Controller
         return $this->render('pages.home', ['user' => $user]);
     }
 
-    public function about()
+    public function profile()
     {        
-        // dd($users);
-        return $this->render('pages.about');
-    }
-
-    public function users()
-    {
         $db = $this->container->get('database')->capsule();
         $users = $db->table('users')->select('id', 'name', 'email')->get();
         // dd($users);
-        return $this->render('pages.users', ['users' => $users]);
-    }
+        return $this->render('pages.profile', ['users' => $users]);
+    }    
 
     public function lost()
     {        

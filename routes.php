@@ -5,8 +5,7 @@ use Lite\Routing\Routes;
 $routes = new Routes;
 
 $routes->get('home', '/', ['_controller' => 'App\Controllers\SiteController::home', 'middleware' => 'auth|clean']);
-$routes->get('about', '/about', ['_controller' => 'App\Controllers\SiteController::about']);
-$routes->get('users', '/users', ['_controller' => 'App\Controllers\SiteController::users', 'middleware' => 'auth']);
+$routes->get('profile', '/profile', ['_controller' => 'App\Controllers\SiteController::profile', 'middleware' => 'auth']);
 $routes->get('landing.demo', '/landing/demo', ['_controller' => 'App\Controllers\LandingpageController::demo']);
 
 // Auth routes

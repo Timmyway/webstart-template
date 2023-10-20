@@ -9,8 +9,7 @@
                 <div class="ml-10 flex items-baseline space-x-4">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="{{ route('home') }}" class="{{ isActiveRoute('home') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                    <a href="{{ route('about') }}" class="{{ isActiveRoute('about') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">About</a>
-                    <a href="{{ route('users') }}" class="{{ isActiveRoute('users') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Users</a>
+                    <a href="{{ route('profile') }}" class="{{ isActiveRoute('profile') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Profile</a>                    
                 </div>
             </div>
             </div>
@@ -41,7 +40,7 @@
                 -->                
                 <div v-show="isProfileVisible" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <!-- Active: "bg-gray-100", Not Active: "" -->
-                    <a href="{{ route('users') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Users</a>
+                    <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Profile</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
@@ -73,8 +72,7 @@
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="{{ route('home') }}" class="{{ urlIs('/') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="{{ route('about') }}" class="{{ urlIs('/about') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium">About</a>
-            <a href="{{ route('users') }}" class="{{ urlIs('/users') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium">Users</a>
+            <a href="{{ route('profile') }}" class="{{ urlIs('/profile') ? 'bg-yellow-400 text-dark' : 'text-gray-300' }} block rounded-md px-3 py-2 text-base font-medium">Profile</a>            
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-5">
@@ -87,7 +85,7 @@
             </div>
             <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span class="absolute -inset-1.5"></span>
-                <span class="sr-only">View notifications</span>
+                    <span class="sr-only">View notifications</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
