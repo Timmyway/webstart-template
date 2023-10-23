@@ -1,0 +1,18 @@
+[v-cloak] > * { display: none }
+[v-cloak]::before { content: "loading…" }
+
+// Set colors
+@each $colorLabel,$colorValue in $colors {
+	.bg-#{$colorLabel} {
+		background: $colorValue;
+	}
+	.text-#{$colorLabel} {
+		color: $colorValue;
+	}
+	.btn-#{$colorLabel} {
+		background: $colorValue;
+		&:hover {
+			background: darken($colorValue, 15%);
+		}
+	}
+}

@@ -21,25 +21,3 @@
 			+ "Available breakpoints are: #{map-keys($breakpoints)}.";
 	}
 }
-
-@mixin propBuild($propName, $propValues, $label: null) {	
-    @each $prop in $propValues {
-    	@if $label {
-	        .#{$label}-#{$prop} {
-	            #{$propName}: $prop;
-	        } 
-	    } @else {
-        	.#{$propName}-#{$prop} {
-        		#{$propName}: $prop;
-    		}
-	    }
-    }   
-}
-
-// @mixin propBuildFromMap($propName, $propValues) {
-//     @each $propLabel,$propValue in $propValues {
-//         .#{$propLabel}-#{$propValue} {
-//             justify-content: $propValue;
-//         }
-//     }   
-// }

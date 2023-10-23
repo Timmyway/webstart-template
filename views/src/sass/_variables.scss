@@ -1,0 +1,44 @@
+// Sass variables:
+$theme: 'dark';
+// Colors ---------------------------------------
+$primaryColor: #333333!default;
+$secondaryColor: #FF8080!default;
+// Notification colors
+$successColor: #2FBF71!default;
+$infoColor: #41d0fc!default;
+$warningColor: #ffab3cea!default;
+$dangerColor: #EF2D56!default;
+
+$colors: ('primary': $primaryColor,
+	'secondary': $secondaryColor,	
+	// usual colors
+	'white': #FFFFFF,
+	'black': #000000,
+	// Notification colors	
+	'success': $successColor,
+	'info': $infoColor,	
+	'warning': $warningColor,
+	'danger': $dangerColor	
+);
+
+$deviceBreakpoints: (
+	'xs':  361px,
+	'sm':  576px,
+	'md':   768px,
+	'lg':  992px,
+	'xl':   1200px,
+	'xxl':   1400px ) !default;
+$breakpointsMax: (
+	'xs':  'max-width: 361px',
+	'sm':  'max-width: 576px',
+	'md':   'max-width:  768px',
+	'lg':  'max-width:  992px',
+	'xl':   'max-width: 1200px',
+	'xxl':   'max-width: 1400px' ) !default;
+$breakpointsMin: (
+	'xs':  'min-width: 361px',
+	'sm':  'min-width: 576px',
+	'md':   'min-width:  768px',
+	'lg':  'min-width:  992px',
+	'xl':   'min-width: 1200px',
+	'xxl':   'min-width: 1400px' ) !default;
