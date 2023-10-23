@@ -9,7 +9,7 @@ class Csrf
     static function generate(Session $session, string $name = 'csrf_token', bool $asTag = true): string
     {
         $token = bin2hex(random_bytes(32));
-        $session->set($name, $token);
+        $session->set($name, $token);        
         return $asTag ? 
             '<input type="hidden" name="'.$name.'" value="' . $token . '">' 
             : $token;
@@ -20,7 +20,7 @@ class Csrf
     {        
         if (!$session->has($name) || !$token) {
             return false;
-        }        
+        }
 
         $storedToken = $session->get($name);
         $session->remove($name);
