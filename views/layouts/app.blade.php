@@ -10,6 +10,7 @@
         <title>Lite Webstart</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans&display=swap" rel="stylesheet">        
+        {{-- <link rel="stylesheet" href="{{ asset('build/assets/style-2b954ecc.css')}}"> --}}
         @yield('head')
     </head>
     <body class="antialised">
@@ -32,6 +33,7 @@
 		<script type="module" src="http://127.0.0.1:5173/@vite/client"></script>
         @section('vuescript')
 		<script type="module" src="http://127.0.0.1:5173/views/src/entries/mainBundle.js"></script>
+        {{-- <script type="module" src="{{ asset('build/assets/app-a91cb1ab.js') }}"></script> --}}
         @show
         @section('scripts')
         @endsection
