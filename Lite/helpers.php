@@ -3,6 +3,8 @@
 use Lite\Http\RedirectResponse;
 use Lite\Http\Request;
 use Lite\Http\Response;
+use Lite\Http\Security\Csrf;
+use Lite\Http\Session;
 use Lite\Service\ContainerHolder;
 
 function urlIs($value) {
@@ -130,5 +132,12 @@ if (!function_exists('db')) {
     function db()
     {
         return ContainerHolder::getContainer()->get('database')->capsule();
+    }
+}
+
+if (!function_exists('csrfToken')) {
+    function csrfToken(Session $session)
+    {
+        return Csrf::generate($session);
     }
 }

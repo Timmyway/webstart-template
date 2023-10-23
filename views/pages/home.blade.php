@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container mx-auto relative">
-  
+<div class="container mx-auto relative">  
   <h1
     class="px-8 mt-16 mb-4 text-5xl font-extrabold leading-tight text-center xl:text-6xl"
   >

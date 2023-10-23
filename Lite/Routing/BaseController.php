@@ -11,9 +11,9 @@ class BaseController implements ContainerAwareInterface
     protected $database;    
 
     protected function render(string $view, array $datas = [])
-    {
-        // $templateEngine = $request->getService('templateEngine');        
-        $templateEngine = $this->container->get('templateEngine')->getEngine();        
+    {        
+        $templateEngine = $this->container->get('templateEngine')->getEngine();                        
+        $datas['request'] = $this->getRequest();
         
         echo $templateEngine->render($view, $datas);
     }
@@ -26,5 +26,10 @@ class BaseController implements ContainerAwareInterface
     protected function route($routeName = '')
     {
         return $this->container->get('routeHelper')->generateUrl($routeName);
+    }
+
+    protected function getRequest()
+    {
+        return $this->container->get('requestStack')()->getCurrentRequest();
     }
 }

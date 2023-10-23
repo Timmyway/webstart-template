@@ -14,6 +14,7 @@ class MiddlewareEvent extends Event
 
     public function __construct(Request $request, $controller, $routeDetails, MiddlewareStack $middlewareStack)
     {
+        // Accept useful informations from route, request and controller.
         $this->request = $request;
         $this->controller = $controller;
         $this->routeDetails = $routeDetails;

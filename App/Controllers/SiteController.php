@@ -8,7 +8,7 @@ class SiteController extends Controller
 {
     public function home(Request $request)
     {
-        $user = $request->getSession()->get('user');        
+        $user = $request->getSession()->get('user');
         return $this->render('pages.home', ['user' => $user]);
     }
 

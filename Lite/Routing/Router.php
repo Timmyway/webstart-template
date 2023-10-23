@@ -66,11 +66,7 @@ class Router
         $controllerResolver = new ControllerResolver();
         $argumentResolver = new ArgumentResolver();        
         $controller = $controllerResolver->getController($this->request);
-        $this->dispatcher->dispatch(new ControllerEvent($controller), 'kernel.controller');
-        // Run middlewares only if needed
-        // if ($this->requiresMiddleware($routeDetails)) {
-        //     $controller = $this->runMiddlewares($controller);
-        // }
+        $this->dispatcher->dispatch(new ControllerEvent($controller), 'kernel.controller');        
         $this->dispatcher->dispatch(
             new MiddlewareEvent(
                 $this->request, 
@@ -81,20 +77,6 @@ class Router
         );
         // $controller = $this->runMiddlewares($controller, $routeDetails);
         $arguments = $argumentResolver->getArguments($this->request, $controller);
-        return call_user_func_array($controller, $arguments);
-    }
-
-    private function runMiddlewares($controller, $routeDetails)
-    {        
-        $this->middlewareStack->execute($this->request, $controller);
-    }
-
-    private function requiresMiddleware($routeDetails)
-    {
-        // Logic to check if the route requires middleware
-        // You can implement your own logic to determine if a route needs middleware
-        // For example, check the route name or any other relevant attributes
-
-        return $routeDetails['middleware'] ?? false; // Modify this condition as per your route configuration
-    }
+        return call_user_func_array($controller, array_merge([$this->request], $arguments));
+    }    
 }

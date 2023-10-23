@@ -16,7 +16,7 @@ abstract class Middleware
             Request $request, 
             $controller, 
             $routeDetails, 
-            array $args = []            
+            array $args = []
         ) {
         $this->name = $name;
         $this->request = $request;
@@ -30,10 +30,11 @@ abstract class Middleware
 
     private function check()
     {
+        if (isset($this->args['scope']) && $this->args['scope'] === 'global') {            
+            return $this->handle();
+        }
         if ($this->apply()) {
             $this->handle();
-        } else {
-            echo '<span class="opacity-50 p-2 text-xs">You are on a public page...</span>';
         }
     }
 
