@@ -14,25 +14,29 @@ class Csrf
         //     $token = bin2hex(random_bytes(32));    
         // } else {
         //     $token = $session->get('csrf_token');
-        // }                
+        // }        
         $token = bin2hex(random_bytes(32));
         // dd('Generate csrf token: ', $token);
-        $session->set($name, $token);        
+        // Get old token from session
+        $oldToken = $session->get($name);        
+        $session->set($name, $token);
+        $session->set('old_'.$name, $oldToken);        
         return $asTag ? 
             '<input type="hidden" name="'.$name.'" value="' . $token . '">' 
             : $token;
     }
 
     // Verify CSRF token
-    static function verify(Session $session, ?string $token, string $name = 'csrf_token'): bool
+    static function verify(Session $session, ?string $token, string $name = 'csrf_token', bool $matchOld = false): bool
     {
         // Check token presence
         if (!$session->has($name) || !$token) {
             return false;
         }
         
-        $storedToken = $session->get($name);                
+        $oldStoredToken = $session->get('old_'.$name);
+        $storedToken = $session->get($name);        
 
-        return hash_equals($storedToken, $token);
+        return hash_equals($storedToken, $token) || hash_equals($oldStoredToken, $token);
     }
 }
