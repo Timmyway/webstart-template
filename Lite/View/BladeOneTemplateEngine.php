@@ -12,9 +12,10 @@ class BladeOneTemplateEngine implements TemplateEngineInterface {
     private $errorPage;
 
     private function __construct(Request $request, string $viewsPath, string $cachePath, $errorPage = 'pages.404') {
-        $this->_engine = new BladeOne($viewsPath, $cachePath, BladeOne::MODE_SLOW);        
-        $this->_engine->directive('csrf', function () use($request) {            
-            $token = Csrf::generate($request->getSession()); // Replace with your own function to generate the CSRF token
+        $this->_engine = new BladeOne($viewsPath, $cachePath, BladeOne::MODE_AUTO);        
+        // Custom CSRF token directive
+        $this->_engine->directive('csrf', function () use($request) {                        
+            $token = Csrf::generate($request->getSession());            
             return $token;
         });
         $this->errorPage = $errorPage;        

@@ -9,8 +9,9 @@ use Valitron\Validator;
 trait AuthTrait {
     protected $signInColumn = 'username';
 
-    public function register(Request $request)
+    public function register()
     {
+        $request = $this->getRequest();
         $v = new Validator($request->request->all());
         $v->rule('required', ['username', 'password'])
             ->message('{field} is required');
@@ -42,8 +43,9 @@ trait AuthTrait {
         }
     }
 
-    public function signin(Request $request)
-    {
+    public function signin()
+    {        
+        $request = $this->getRequest();
         if ($request->isMethod('POST')) {            
             $v = new Validator($request->request->all());
             $v->rule('required', [$this->signInColumn, 'password'])
@@ -61,7 +63,7 @@ trait AuthTrait {
                     $flashData = [
                         'error' => 'Invalid Credential',
                         $this->signInColumn => $request->get($this->signInColumn)
-                    ];                    
+                    ];
                     SessionManager::addItemsToFlashBag($request, $flashData);
 
                     return redirect('login');
@@ -92,8 +94,9 @@ trait AuthTrait {
         return response('Method not allowed', 405);
     }
 
-    public function signOut(Request $request)
+    public function signOut()
     {
+        $request = $this->getRequest();
         // Destroy the session to sign the user out using Symfony Http Foundation
         $request->getSession()->invalidate();
         return redirect('login');

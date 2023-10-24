@@ -42,9 +42,9 @@
                     <!-- Active: "bg-gray-100", Not Active: "" -->
                     <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Profile</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
-                        @csrf                        
+                        @php echo csrfToken($request->getSession()) @endphp
                         <button type="submit" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
-                    </form>                    
+                    </form>
                 </div>
                 </div>
             </div>
