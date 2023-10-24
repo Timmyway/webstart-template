@@ -20,7 +20,7 @@ class BaseController implements ContainerAwareInterface
 
     protected function db()
     {
-        return $this->container->get('database')->capsule();
+        return $this->container->get('database');
     }
 
     protected function route($routeName = '')

@@ -11,10 +11,9 @@ class DatabaseServiceProvider implements ProviderInterface {
         // Load config file
         $config = new ConfigLoader();
         $databaseConfig = $config->get('database.connections')[env('DB_CONNECTION')];
-        
-        // $templateEngine = TemplateEngineFactory::create('bladeone', $viewsPath, $cachePath);
-        $containerBuilder->register('database', DatabaseManager::class)
-        ->addArgument($databaseConfig);        
+                
+        $dbManager = new DatabaseManager($databaseConfig);
+        $containerBuilder->set('database', $dbManager->capsule());
         return $containerBuilder;
     }
 }
